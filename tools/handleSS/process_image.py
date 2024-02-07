@@ -4,6 +4,7 @@ import time
 import uuid
 import pytesseract
 from PIL import Image
+import easyocr
 
 
 class Screenshot:
@@ -23,20 +24,13 @@ class Screenshot:
 
         return filename
 
-    # def extract_text(filename):
-    #     image_path = f"temp/{filename}"
-    #     image = Image.open(image_path)
-    #     print(image)
-    #     # text = pytesseract.image_to_string(image)
-    #     # return text
-
     def extract_text(filename):
         image_path = f"temp/{filename}"
-        image = Image.open(image_path)
-        print(image)
+        reader = easyocr.Reader(["en"])
+        result = reader.readtext(image_path)
 
-        # Perform OCR text extraction
-        extracted_text = pytesseract.image_to_string(image)
-        print(extracted_text)
+        extracted_text = ""
+        for detection in result:
+            extracted_text += detection[1] + " "
 
-        return extracted_text
+        return extracted_text.strip()
