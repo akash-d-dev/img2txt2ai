@@ -3,7 +3,7 @@ from process_image import Screenshot
 
 def main():
     filename = Screenshot.process_image()
-    # print(f"Screenshot saved as {filename}")
+    print(f"Screenshot saved as {filename}")
     text = Screenshot.extract_text(filename)
     print(text)
 

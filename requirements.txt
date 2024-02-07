@@ -1,0 +1,6 @@
+# requirements.txt
+
+packaging==23.2
+pillow==10.2.0
+pyperclip==1.8.2
+pytesseract==0.3.10
