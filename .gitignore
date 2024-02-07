@@ -13,6 +13,7 @@
 # misc
 __pychache__
 myenv
+venv
 .env
 .DS_Store
 .env.local
@@ -27,3 +28,5 @@ venv/*
 *.pyc
 */__pychache__/*
 .vscode/settings.json
+./venv
+```
