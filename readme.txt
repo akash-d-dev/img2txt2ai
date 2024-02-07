@@ -4,3 +4,5 @@ python3 -m venv venv
 -create temp folder on same lvl as main-
 
 pip3 install -r requirements.txt
+
+uvicorn main:app --reload
