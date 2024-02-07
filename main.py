@@ -1,4 +1,4 @@
-from process_image import Screenshot
+from tools.handleSS.process_image import Screenshot
 
 
 def main():
