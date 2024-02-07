@@ -28,8 +28,9 @@ venv/*
 *.pyc
 */__pychache__/*
 .vscode/settings.json
-./venv
-./.venv
 .venv
 
+temp
+./temp
+/temp
 ```
