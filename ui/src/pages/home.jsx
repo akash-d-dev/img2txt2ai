@@ -16,7 +16,10 @@ function Home() {
   const urlNetwork = 'http://192.168.137.1:8000';
   const [active, setActive] = useState(0);
   const [quesFile, setQuesFile] = useState('');
-  const [ansFile, setAnsFile] = useState('');
+  const [ansFile, setAnsFile] = useState({
+    ans_gpt: '',
+    ans_gemini: '',
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [inputBox, setInputBox] = useState(false);
@@ -34,7 +37,10 @@ function Home() {
       setLoading(true);
       const response = await axios.get(urlNetwork);
       setQuesFile(response.data.qna_content);
-      setAnsFile(response.data.ans_content);
+      setAnsFile({
+        ans_gpt: response.data.ans_content_gpt,
+        ans_gemini: response.data.ans_content_gemini,
+      });
     } catch (error) {
       console.error(error);
       setError(error);
@@ -129,9 +135,13 @@ function Home() {
         {loading ? 'Loading...' : error && `Someting went wrong:${error}`}
         {!loading && !error && active === 0 && <Ques ques={quesFile} />}
         <br />
-        {!loading && !error && active === 1 && <AnsGpt3 ans={ansFile} />}
+        {!loading && !error && active === 1 && (
+          <AnsGpt3 ans={ansFile.ans_gpt} />
+        )}
         <br />
-        {!loading && !error && active === 2 && <AnsBard ans={quesFile} />}
+        {!loading && !error && active === 2 && (
+          <AnsBard ans={ansFile.ans_gemini} />
+        )}
       </Box>
     </>
   );

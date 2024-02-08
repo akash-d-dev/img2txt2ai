@@ -7,9 +7,17 @@ class TxtFile:
             file.write(text)
         return True
 
-    def add_a_to_file(text):
+    def add_a_to_file_openai(text):
         print(text)
         filename = "temp/" + "ans.txt"
+        text = text + "\n\n"
+
+        with open(filename, "a") as file:
+            file.write(text)
+        return True
+
+    def add_a_to_file_gemini(text):
+        filename = "temp/" + "ans_gemini.txt"
         text = text + "\n\n"
 
         with open(filename, "a") as file:

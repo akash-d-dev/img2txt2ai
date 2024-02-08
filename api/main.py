@@ -44,11 +44,11 @@ def clearQnaHandler():
         print("QnA cleared")
 
 
-def createAns():
-    keyboard.add_hotkey("alt+1", createAnsHandler)
+def createAnsOpenAI():
+    keyboard.add_hotkey("alt+1", createAnsHandlerOpenAI)
 
 
-def createAnsHandler():
+def createAnsHandlerOpenAI():
     error_message, qna_content = CallAi.openAi()
     print(qna_content)
     if error_message is not None:
@@ -58,18 +58,46 @@ def createAnsHandler():
             qna_doc = TxtScreenshot.formatTxtErorr("-No Question Present-")
     else:
         qna_doc = qna_content
-    TxtFile.add_a_to_file(qna_doc)
-    print("Ans created")
+    TxtFile.add_a_to_file_openai(qna_doc)
+    print("Ans created using OpenAI")
 
 
-def clearAns():
-    keyboard.add_hotkey("alt+8", clearAnsHandler)
+def clearAnsOpenAI():
+    keyboard.add_hotkey("alt+8", clearAnsHandlerOpenAI)
 
 
-def clearAnsHandler():
+def clearAnsHandlerOpenAI():
     with open("temp/ans.txt", "w") as file:
         file.write("")
-        print("Ans cleared")
+        print("GPT Ans cleared")
+
+
+def createAnsGemini():
+    keyboard.add_hotkey("alt+2", createAnsHandlerGemini)
+
+
+def createAnsHandlerGemini():
+    error_message, qna_content = CallAi.gemini()
+    print(qna_content)
+    if error_message is not None:
+        if qna_content is not None:
+            qna_doc = TxtScreenshot.formatTxtErorr(qna_content)
+        else:
+            qna_doc = TxtScreenshot.formatTxtErorr("-No Question Present-")
+    else:
+        qna_doc = qna_content
+    TxtFile.add_a_to_file_gemini(qna_doc)
+    print("Ans created using Gemini")
+
+
+def clearAnsGemini():
+    keyboard.add_hotkey("alt+7", clearAnsHandlerGemini)
+
+
+def clearAnsHandlerGemini():
+    with open("temp/ans_gemini.txt", "w") as file:
+        file.write("")
+        print("Gemini Ans cleared")
 
 
 app = FastAPI()
@@ -87,8 +115,10 @@ app.add_middleware(
 try:
     createQna()
     clearQna()
-    createAns()
-    clearAns()
+    createAnsOpenAI()
+    clearAnsOpenAI()
+    createAnsGemini()
+    clearAnsGemini()
 except Exception as e:
     print(f"An error occurred: {str(e)}")
 
@@ -96,18 +126,29 @@ except Exception as e:
 @app.get("/")
 def read_root():
     qna_content = ""
-    ans_content = ""
+    ans_content_gpt = ""
+    ans_content_gemini = ""
+
     with open("temp/qna.txt", "r") as file:
         qna_content = file.read().replace("\n", "<br>")
         if not qna_content:
             qna_content = "-empty-"
 
     with open("temp/ans.txt", "r") as file:
-        ans_content = file.read().replace("\n", "<br>")
-        if not ans_content:
-            ans_content = "-empty-"
+        ans_content_gpt = file.read().replace("\n", "<br>")
+        if not ans_content_gpt:
+            ans_content_gpt = "-empty-"
 
-    return {"qna_content": qna_content, "ans_content": ans_content}
+    with open("temp/ans_gemini.txt", "r") as file:
+        ans_content_gemini = file.read().replace("\n", "<br>")
+        if not ans_content_gemini:
+            ans_content_gemini = "-empty-"
+
+    return {
+        "qna_content": qna_content,
+        "ans_content_gpt": ans_content_gpt,
+        "ans_content_gemini": ans_content_gemini,
+    }
 
 
 @app.post("/")

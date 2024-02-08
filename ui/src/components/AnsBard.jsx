@@ -11,11 +11,10 @@ function AnsBard({ ans }) {
         </Typography>
         <br />
         <Box>
-          {/* <Typography
+          <Typography
             variant='body1'
             dangerouslySetInnerHTML={{ __html: ans }}
-          /> */}
-          Comming soon...
+          />
         </Box>
       </Box>
     </>
