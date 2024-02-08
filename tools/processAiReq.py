@@ -48,7 +48,8 @@ class CallAi:
 
                         
                         Sample Response Expected by you:
-                        
+                            
+                            Question:
                             How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
 
                             Answer:
@@ -67,7 +68,7 @@ class CallAi:
 
                 if completion.choices[0].message.content is not None:
                     reply = completion.choices[0].message.content
-                    print(reply)
+                    # print(reply)
                     return None, reply
                 else:
                     # raise Exception("Failed to generate response")

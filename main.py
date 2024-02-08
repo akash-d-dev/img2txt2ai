@@ -8,6 +8,7 @@ from tools.processAiReq import CallAi
 from fastapi import FastAPI, HTTPException
 import keyboard
 import uvicorn
+from fastapi.responses import HTMLResponse
 
 
 def startApp():
@@ -76,7 +77,47 @@ except Exception as e:
     print(f"An error occurred: {str(e)}")
 
 
-@app.get("/")
+# @app.get("/")
+# def read_root():
+#     qna_content = ""
+#     ans_content = ""
+#     with open("temp/qna.txt", "r") as file:
+#         qna_content = file.read()
+#         if not qna_content:
+#             qna_content = "-empty-"
+
+#     with open("temp/ans.txt", "r") as file:
+#         ans_content = file.read()
+#         if not ans_content:
+#             ans_content = "-empty-"
+
+#     @app.get("/ans_content", response_class=HTMLResponse)
+#     def get_ans_content():
+#         with open("temp/ans.txt", "r") as file:
+#             ans_content = file.read()
+#             if not ans_content:
+#                 ans_content = "-empty-"
+#         return ans_content
+
+
+# @app.get("/")
+# def read_root():
+#     qna_content = ""
+#     ans_content = ""
+#     with open("temp/qna.txt", "r") as file:
+#         qna_content = file.read()
+#         if not qna_content:
+#             qna_content = "-empty-"
+
+#     with open("temp/ans.txt", "r") as file:
+#         ans_content = file.read()
+#         if not ans_content:
+#             ans_content = "-empty-"
+
+#     return {"qna_content": qna_content, "ans_content": ans_content}
+
+
+@app.get("/", response_class=HTMLResponse)
 def read_root():
     qna_content = ""
     ans_content = ""
@@ -90,7 +131,8 @@ def read_root():
         if not ans_content:
             ans_content = "-empty-"
 
-    return {"qna_content": qna_content, "ans_content": ans_content}
+    html_content = f"<html><body><h1>QNA Content:</h1><p>{qna_content}</p><h1>Answer Content:</h1><p>{ans_content}</p></body></html>"
+    return HTMLResponse(content=html_content)
 
 
 if __name__ == "__main__":
