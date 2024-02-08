@@ -10,7 +10,7 @@ function AnsGpt3({ ans }) {
         <br />
         <Box>
           <Typography
-            variant='body2'
+            variant='body1'
             dangerouslySetInnerHTML={{ __html: ans }}
           />
         </Box>

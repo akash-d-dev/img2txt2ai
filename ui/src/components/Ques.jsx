@@ -12,7 +12,7 @@ function Ques({ ques }) {
         <br />
         <Box>
           <Typography
-            variant='body2'
+            variant='body1'
             color='initial'
             dangerouslySetInnerHTML={{ __html: ques }}
           />

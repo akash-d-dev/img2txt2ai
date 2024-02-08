@@ -22,7 +22,7 @@ class CallAi:
                 messages.append(
                     {
                         "role": "system",
-                        "content": """You are a quiz solver. Help prepare a qna doc, you will be provided with questions, options and some instructions by the user (Sapmle input is given below). Your job is to only pick the corerct option and reply reply in the format shown in this sample response.
+                        "content": """You are a quiz solver. Help prepare a qna doc, you will be provided with questions, options and some instructions by the user (Sapmle input is given below). Your job is to only pick the corerct option and reply reply in the format shown in this sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN.
                         
                         Sample User Input:
                         
@@ -53,10 +53,10 @@ class CallAi:
                             How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
 
                             Answer:
-                            c) By offering a text-based environment for scripting and executing commands
+                            <b> c) By offering a text-based environment for scripting and executing commands <b/>
                             
                         
-                        Note: If a question is asked without any options, you should reply with the question and whatever you think is the correct answer. Make sure to solve the question
+                        Note: If a question is asked without any options, you should do as user asks
                         """,
                     }
                 )

@@ -22,7 +22,7 @@ function Home() {
   const [inputBox, setInputBox] = useState(false);
 
   const buttonContainerStyle = {
-    position: 'fixed',
+    position: 'absolute',
     top: '12px',
     transform: 'translateX(-0%)',
     display: 'flex',

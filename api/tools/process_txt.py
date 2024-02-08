@@ -13,9 +13,11 @@ class TxtScreenshot:
     def formatTxt(qna):
         text = " - Ques with options:"
         text += "\n\n"
+        text += "<b>"
         text += qna
+        text += "</b>"
         text += "\n\n\n"
-        text += "You reply should have this queston and correct option listed only"
+        text += "Your reply should have this queston and correct option listed ONLY. If options are missing then you should reply with the question and whatever you think is the correct answer. Make sure to solve the question."
         text += "\n\n\n"
         text += "Fill Answer here :"
         text += "\n\n\n"
