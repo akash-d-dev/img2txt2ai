@@ -23,6 +23,8 @@ const InputBox = ({ sendTexttoServer, loading }) => {
         sx={{
           ...inputStyles,
           width: '333px',
+          zIndex: 10,
+          bgcolor: 'white',
         }}
         maxRows={22}
       />

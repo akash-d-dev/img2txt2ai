@@ -131,7 +131,7 @@ function Home() {
         <InputBox sendTexttoServer={sendTexttoServer} loading={loading} />
       )}
 
-      <Box display={'flex'} my={2} mx={1}>
+      <Box display={'flex'} mt={2} mb={12} mx={1}>
         {loading ? 'Loading...' : error && `Someting went wrong:${error}`}
         {!loading && !error && active === 0 && <Ques ques={quesFile} />}
         <br />
