@@ -49,17 +49,11 @@ class CallAi:
                         
                         Sample Response Expected by you:
                         
-                        - QNA doc-:
-
                             How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
-
-                            a) By providing advanced image editing tools
-                            b) By simplifying voice recognition functionalities
-                            c) By offering a text-based environment for scripting and executing commands
-                            d) By optimizing file storage and retrieval processes
 
                             Answer:
                             c) By offering a text-based environment for scripting and executing commands
+                            
                         """,
                     }
                 )

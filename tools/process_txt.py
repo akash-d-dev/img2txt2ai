@@ -10,7 +10,7 @@ class TxtScreenshot:
         text += "\n\n"
         text += qna
         text += "\n\n\n"
-        text += "You reply should have this queston listed with all the options"
+        text += "You reply should have this queston and correct option listed only"
         text += "\n\n\n"
         text += "Fill Answer here :"
         text += "\n\n\n"

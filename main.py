@@ -21,7 +21,7 @@ def stopApp():
 
 
 def createQna():
-    keyboard.add_hotkey("right ctrl+0", createQnaHandler)
+    keyboard.add_hotkey("alt+0", createQnaHandler)
 
 
 def createQnaHandler():
@@ -32,7 +32,7 @@ def createQnaHandler():
 
 
 def clearQna():
-    keyboard.add_hotkey("right ctrl+9", clearQnaHandler)
+    keyboard.add_hotkey("alt+9", clearQnaHandler)
 
 
 def clearQnaHandler():
@@ -42,7 +42,7 @@ def clearQnaHandler():
 
 
 def createAns():
-    keyboard.add_hotkey("right ctrl+1", createAnsHandler)
+    keyboard.add_hotkey("alt+1", createAnsHandler)
 
 
 def createAnsHandler():
@@ -56,7 +56,7 @@ def createAnsHandler():
 
 
 def clearAns():
-    keyboard.add_hotkey("right ctrl+8", clearAnsHandler)
+    keyboard.add_hotkey("alt+8", clearAnsHandler)
 
 
 def clearAnsHandler():
