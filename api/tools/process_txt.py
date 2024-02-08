@@ -5,6 +5,11 @@ class TxtScreenshot:
     def getTxtFromClipboard():
         return pyperclip.paste()
 
+    def pasteTxtToClipboard(text):
+        pyperclip.copy(text)
+        print("Text copied to clipboard: ", text)
+        return True
+
     def formatTxt(qna):
         text = " - Ques with options:"
         text += "\n\n"

@@ -6,10 +6,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # from tools.processEvents import Events
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 import keyboard
 import uvicorn
 from fastapi.responses import HTMLResponse
+import pyperclip
 
 
 def startApp():
@@ -109,5 +110,12 @@ def read_root():
     return {"qna_content": qna_content, "ans_content": ans_content}
 
 
+@app.post("/")
+async def receive_txt(request: Request):
+    text_dict = await request.json()
+    TxtScreenshot.pasteTxtToClipboard(text_dict["text"])
+    return True
+
+
 if __name__ == "__main__":
-    uvicorn.run(app=app, host="localhost", port=5000)
+    uvicorn.run(app=app, host="localhost", port=8000)

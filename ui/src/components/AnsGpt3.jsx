@@ -6,7 +6,7 @@ function AnsGpt3({ ans }) {
   return (
     <>
       <Box>
-        <Typography variant='h6'>Answer Collection</Typography>
+        <Typography variant='h6'>Answer Collection - GPT-3.5 Turbo</Typography>
         <br />
         <Box>
           <Typography

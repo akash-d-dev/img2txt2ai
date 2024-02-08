@@ -6,7 +6,9 @@ function AnsBard({ ans }) {
   return (
     <>
       <Box>
-        <Typography variant='h6'>Answer Collection</Typography>
+        <Typography variant='h6'>
+          Answer Collection - Bard Gemini Pro
+        </Typography>
         <br />
         <Box>
           {/* <Typography
