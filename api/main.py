@@ -1,7 +1,8 @@
-from tools.process_image import Screenshot
 from tools.process_txt import TxtScreenshot
 from tools.process_txt_file import TxtFile
 from tools.processAiReq import CallAi
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # from tools.processEvents import Events
 
@@ -71,6 +72,16 @@ def clearAnsHandler():
 
 
 app = FastAPI()
+##################################################################
+# Setup CORS
+##################################################################
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 try:
     createQna()
@@ -81,7 +92,7 @@ except Exception as e:
     print(f"An error occurred: {str(e)}")
 
 
-# @app.get("/")
+# @app.get("/", response_class=HTMLResponse)
 # def read_root():
 #     qna_content = ""
 #     ans_content = ""
@@ -95,33 +106,11 @@ except Exception as e:
 #         if not ans_content:
 #             ans_content = "-empty-"
 
-#     @app.get("/ans_content", response_class=HTMLResponse)
-#     def get_ans_content():
-#         with open("temp/ans.txt", "r") as file:
-#             ans_content = file.read()
-#             if not ans_content:
-#                 ans_content = "-empty-"
-#         return ans_content
+#     html_content = f"<html><body><h1>QNA Content:</h1><p>{qna_content}</p><h1>Answer Content:</h1><p>{ans_content}</p></body></html>"
+#     return HTMLResponse(content=html_content)
 
 
-# @app.get("/")
-# def read_root():
-#     qna_content = ""
-#     ans_content = ""
-#     with open("temp/qna.txt", "r") as file:
-#         qna_content = file.read()
-#         if not qna_content:
-#             qna_content = "-empty-"
-
-#     with open("temp/ans.txt", "r") as file:
-#         ans_content = file.read()
-#         if not ans_content:
-#             ans_content = "-empty-"
-
-#     return {"qna_content": qna_content, "ans_content": ans_content}
-
-
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 def read_root():
     qna_content = ""
     ans_content = ""
@@ -135,8 +124,7 @@ def read_root():
         if not ans_content:
             ans_content = "-empty-"
 
-    html_content = f"<html><body><h1>QNA Content:</h1><p>{qna_content}</p><h1>Answer Content:</h1><p>{ans_content}</p></body></html>"
-    return HTMLResponse(content=html_content)
+    return {"qna_content": qna_content, "ans_content": ans_content}
 
 
 if __name__ == "__main__":
