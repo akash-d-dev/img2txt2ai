@@ -48,8 +48,12 @@ def createAns():
 
 def createAnsHandler():
     error_message, qna_content = CallAi.openAi()
+    print(qna_content)
     if error_message is not None:
-        qna_doc = TxtScreenshot.formatTxtErorr(qna_content)
+        if qna_content is not None:
+            qna_doc = TxtScreenshot.formatTxtErorr(qna_content)
+        else:
+            qna_doc = TxtScreenshot.formatTxtErorr("-No Question Present-")
     else:
         qna_doc = qna_content
     TxtFile.add_a_to_file(qna_doc)
