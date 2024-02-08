@@ -29,7 +29,7 @@ class CallAi:
                 completion = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     messages=messages,
-                    api_key="OPENAI_KEY",
+                    api_key="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",
                 )
 
                 if completion.choices[0].message.content is not None:
@@ -41,3 +41,5 @@ class CallAi:
             except Exception as e:
                 # raise ValueError("")
                 return "-An error occured-"
+        else:
+            return "-Empty File-"

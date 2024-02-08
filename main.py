@@ -1,7 +1,9 @@
-from tools.handleSS.process_image import Screenshot
-from tools.handleTxtSS.process_txt import TxtScreenshot
-from tools.handleTxtFile.process_txt_file import TxtFile
-from tools.handleEvents.processEvents import Events
+from tools.process_image import Screenshot
+from tools.process_txt import TxtScreenshot
+from tools.process_txt_file import TxtFile
+from tools.processAiReq import CallAi
+
+# from tools.processEvents import Events
 
 from fastapi import FastAPI, HTTPException
 import keyboard
@@ -11,33 +13,118 @@ import uvicorn
 import openai
 
 
-def main():
-    FastAPI()
-    Events.listen()
-    # filename = Screenshot.process_image()
-    # print(f"Screenshot saved as {filename}")
-    # if filename:
-    #     text = Screenshot.extract_text(filename)
-    # print(text)
+# def main():
+#     # stopApp()
+#     createQna()
+#     clearQna()
+#     createAns()
+#     clearAns()
+
+#     def startApp():
+#         while True:
+#             print("Starting app")
+#             break
+
+#     def stopApp():
+#         print("Stopping app")
+
+#     def createQna():
+#         keyboard.add_hotkey("right ctrl+0", createQnaHandler)
+
+#     def createQnaHandler():
+#         text = TxtScreenshot.getTxtFromClipboard()
+#         formatted_text = TxtScreenshot.formatTxt(text)
+#         TxtFile.add_q_to_file(formatted_text)
+
+#     def clearQna():
+#         keyboard.add_hotkey("right ctrl+9", clearQnaHandler)
+
+#     def clearQnaHandler():
+#         with open("temp/qna.txt", "w") as file:
+#             file.write("")
+#             print("QnA cleared")
+
+#     def createAns():
+#         keyboard.add_hotkey("right ctrl+1", createAnsHandler)
+
+#     def createAnsHandler():
+#         qna_doc = CallAi.openAi
+#         TxtFile.add_a_to_file(qna_doc)
+
+#     def clearAns():
+#         keyboard.add_hotkey("right ctrl+8", clearAnsHandler)
+
+#     def clearAnsHandler():
+#         with open("temp/ans.txt", "w") as file:
+#             file.write("")
+#             print("Ans cleared")
+
+# def main():
+#     # stopApp()
+#     createQna()
+#     clearQna()
+#     createAns()
+#     clearAns()
+
+
+def startApp():
+    while True:
+        print("Starting app")
+        break
+
+
+def stopApp():
+    print("Stopping app")
+
+
+def createQna():
+    keyboard.add_hotkey("right ctrl+0", createQnaHandler)
+
+
+def createQnaHandler():
     text = TxtScreenshot.getTxtFromClipboard()
     formatted_text = TxtScreenshot.formatTxt(text)
-    print(formatted_text)
-
     TxtFile.add_q_to_file(formatted_text)
 
-    # text = TxtScreenshot.getTxtFromClipboard()
-    # formatted_text = TxtScreenshot.formatTxt(text)
-    # print(formatted_text)
 
-    # TxtFile.add_txt_to_file(formatted_text, "qna.txt")
+def clearQna():
+    keyboard.add_hotkey("right ctrl+9", clearQnaHandler)
 
 
-# # if __name__ == "__main__":
-# #     main()
+def clearQnaHandler():
+    with open("temp/qna.txt", "w") as file:
+        file.write("")
+        print("QnA cleared")
+
+
+def createAns():
+    keyboard.add_hotkey("right ctrl+1", createAnsHandler)
+
+
+async def createAnsHandler():
+    qna_doc = await CallAi.openAi()
+    TxtFile.add_a_to_file(qna_doc)
+
+
+def clearAns():
+    keyboard.add_hotkey("right ctrl+8", clearAnsHandler)
+
+
+def clearAnsHandler():
+    with open("temp/ans.txt", "w") as file:
+        file.write("")
+        print("Ans cleared")
+
 
 app = FastAPI()
 
-main()
+try:
+    createQna()
+    clearQna()
+    createAns()
+    clearAns()
+except Exception as e:
+    print(f"An error occurred: {str(e)}")
 
 
 @app.get("/")
