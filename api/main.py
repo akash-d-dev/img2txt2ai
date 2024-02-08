@@ -92,35 +92,17 @@ except Exception as e:
     print(f"An error occurred: {str(e)}")
 
 
-# @app.get("/", response_class=HTMLResponse)
-# def read_root():
-#     qna_content = ""
-#     ans_content = ""
-#     with open("temp/qna.txt", "r") as file:
-#         qna_content = file.read()
-#         if not qna_content:
-#             qna_content = "-empty-"
-
-#     with open("temp/ans.txt", "r") as file:
-#         ans_content = file.read()
-#         if not ans_content:
-#             ans_content = "-empty-"
-
-#     html_content = f"<html><body><h1>QNA Content:</h1><p>{qna_content}</p><h1>Answer Content:</h1><p>{ans_content}</p></body></html>"
-#     return HTMLResponse(content=html_content)
-
-
 @app.get("/")
 def read_root():
     qna_content = ""
     ans_content = ""
     with open("temp/qna.txt", "r") as file:
-        qna_content = file.read()
+        qna_content = file.read().replace("\n", "<br>")
         if not qna_content:
             qna_content = "-empty-"
 
     with open("temp/ans.txt", "r") as file:
-        ans_content = file.read()
+        ans_content = file.read().replace("\n", "<br>")
         if not ans_content:
             ans_content = "-empty-"
 

@@ -2,19 +2,16 @@
 import { Box, Typography } from '@mui/material';
 import ResFormatter from '../utils/ResFormatter';
 
-function Ques({ ques }) {
+function AnsGpt3({ ans }) {
   return (
     <>
       <Box>
-        <Typography variant='h6' color='initial'>
-          Questions Collection
-        </Typography>
+        <Typography variant='h6'>Answer Collection</Typography>
         <br />
         <Box>
           <Typography
             variant='body2'
-            color='initial'
-            dangerouslySetInnerHTML={{ __html: ques }}
+            dangerouslySetInnerHTML={{ __html: ans }}
           />
         </Box>
       </Box>
@@ -22,4 +19,4 @@ function Ques({ ques }) {
   );
 }
 
-export default Ques;
+export default AnsGpt3;

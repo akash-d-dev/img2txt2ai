@@ -2,24 +2,22 @@
 import { Box, Typography } from '@mui/material';
 import ResFormatter from '../utils/ResFormatter';
 
-function Ques({ ques }) {
+function AnsBard({ ans }) {
   return (
     <>
       <Box>
-        <Typography variant='h6' color='initial'>
-          Questions Collection
-        </Typography>
+        <Typography variant='h6'>Answer Collection</Typography>
         <br />
         <Box>
-          <Typography
+          {/* <Typography
             variant='body2'
-            color='initial'
-            dangerouslySetInnerHTML={{ __html: ques }}
-          />
+            dangerouslySetInnerHTML={{ __html: ans }}
+          /> */}
+          Comming soon...
         </Box>
       </Box>
     </>
   );
 }
 
-export default Ques;
+export default AnsBard;

@@ -1,7 +1,7 @@
 class TxtFile:
     def add_q_to_file(text):
         filename = "temp/" + "qna.txt"
-        text = text + "\n\n\n"
+        text = text + "\n\n"
 
         with open(filename, "a") as file:
             file.write(text)
@@ -10,7 +10,7 @@ class TxtFile:
     def add_a_to_file(text):
         print(text)
         filename = "temp/" + "ans.txt"
-        text = text + "\n\n\n"
+        text = text + "\n\n"
 
         with open(filename, "a") as file:
             file.write(text)
