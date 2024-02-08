@@ -11,6 +11,7 @@ class CallAi:
                 qna_content = None
 
         if qna_content:
+            print("QnA content: ", qna_content)
             try:
                 messages = [
                     {
@@ -21,7 +22,45 @@ class CallAi:
                 messages.append(
                     {
                         "role": "system",
-                        "content": "You need to prepare a question and an answer doc, you will be provided with questions and options and some instructions by the user. Your job is to only pick the corerct option and add it where user has asked. Do not change the doc format, reply is similar format as user has provided",
+                        "content": """You are a quiz solver. Help prepare a qna doc, you will be provided with questions, options and some instructions by the user (Sapmle input is given below). Your job is to only pick the corerct option and reply reply in the format shown in this sample response. If instead of options some other instructions are provided then you should follow them and reply accordingly.
+                        
+                        Sample User Input:
+                        
+                         - Ques with options:
+
+                            How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
+
+                            By providing advanced image editing tools
+
+                            By simplifying voice recognition functionalities
+
+                            By offering a text-based environment for
+
+                            scripting and executing commands
+
+                            By optimizing file storage and retrieval processes
+
+
+                            You reply should have this queston listed with all the options
+
+
+                            Fill Answer here :
+
+                        
+                        Sample Response Expected by you:
+                        
+                        - QNA doc-:
+
+                            How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
+
+                            a) By providing advanced image editing tools
+                            b) By simplifying voice recognition functionalities
+                            c) By offering a text-based environment for scripting and executing commands
+                            d) By optimizing file storage and retrieval processes
+
+                            Answer:
+                            c) By offering a text-based environment for scripting and executing commands
+                        """,
                     }
                 )
                 messages.append({"role": "user", "content": f"{qna_content}"})
@@ -34,12 +73,13 @@ class CallAi:
 
                 if completion.choices[0].message.content is not None:
                     reply = completion.choices[0].message.content
-                    return reply
+                    print(reply)
+                    return None, reply
                 else:
                     # raise Exception("Failed to generate response")
                     return "-An error occured-"
             except Exception as e:
                 # raise ValueError("")
-                return "-An error occured-"
+                return "-An error occured-", qna_content
         else:
-            return "-Empty File-"
+            return "-Empty File-", qna_content
