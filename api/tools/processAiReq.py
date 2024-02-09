@@ -174,7 +174,7 @@ class CallAi:
                 return None, reply.text
 
             except Exception as e:
-                raise ValueError("")
+                # raise ValueError("")
                 return "-An error occured-", qna_content
         else:
             return "-Empty File-", qna_content
