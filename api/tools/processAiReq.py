@@ -139,7 +139,7 @@ class CallAi:
                             How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
 
                             Answer:
-                            <b> c) By offering a text-based environment for scripting and executing commands <b/>
+                            <b> c) By offering a text-based environment for scripting and executing commands </b>
 
                         Note: If a question is asked without any options, you should do as user asks
                         """
@@ -155,6 +155,22 @@ class CallAi:
                             "parts": [
                                 {
                                     "text": """System prompt: You answer all the questions asked by the user in one reply only.For generating a reply of each question, Use the format shown in the sample response. If a question is asked without any options, you should do as user asks"""
+                                }
+                            ],
+                        },
+                        {
+                            "role": "model",
+                            "parts": [
+                                {
+                                    "text": "Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will start answering now."
+                                }
+                            ],
+                        },
+                        {
+                            "role": "user",
+                            "parts": [
+                                {
+                                    "text": "System prompt: You will wrap only the selected option with <b> </b> tags. If no options are present you can generate your own answer and wrap it with <b> </b> tags"
                                 }
                             ],
                         },

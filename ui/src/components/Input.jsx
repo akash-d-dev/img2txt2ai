@@ -40,6 +40,9 @@ const InputBox = ({ sendTexttoServer, loading }) => {
           borderRadius: '20%',
           color: 'white',
           bgcolor: 'primary.main',
+          '&.hover': {
+            bgcolor: 'primary.main',
+          },
         }}
       >
         <ArrowUpwardIcon />

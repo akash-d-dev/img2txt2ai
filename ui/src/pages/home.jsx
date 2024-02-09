@@ -11,10 +11,9 @@ import InputBox from '../components/Input';
 // import {Button} from '@mui/material';
 
 function Home() {
-  const urlLocal = 'http://127.0.0.1:8000';
-  //   const urlNetwork = 'http://192.168.56.1:8000';
+  //  const urlNetwork = 'http://192.168.56.1:8000';
   // const urlNetwork = 'http://192.168.137.1:8000';
-  const urlNetwork = 'http://127.0.0.1:8000';
+  const urlNetwork = 'http://localhost:8000';
 
   const [active, setActive] = useState(0);
   const [quesFile, setQuesFile] = useState('');
