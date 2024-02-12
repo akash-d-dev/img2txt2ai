@@ -14,7 +14,7 @@ function Home() {
   //  const url = 'http://192.168.56.1:8000';
   // const url = 'http://192.168.19.66:8000';
   // const url = 'http://localhost:8888';
-  const url = 'https://h13lsvst-8888.inc1.devtunnels.ms/';
+  const url = 'https://h13lsvst-8888.inc1.devtunnels.ms';
   // const url = 'https://lucid-wave-72717.pktriot.net';
 
   const [active, setActive] = useState(0);
