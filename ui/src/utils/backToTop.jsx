@@ -19,8 +19,9 @@ const BacktoTop = () => {
         p: 0.75,
         position: 'fixed',
         bottom: '80px',
-        right: '12px',
+        left: '50%',
         zIndex: '100',
+        opacity: '0.5',
       }}
       onClick={scrollUp}
     >

@@ -11,8 +11,8 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import BacktoTop from '../utils/backToTop';
 
 function Home() {
-  // const url = 'http://localhost:8888';
-  const url = 'https://h13lsvst-8888.inc1.devtunnels.ms';
+  const url = 'http://localhost:8888';
+  // const url = 'https://h13lsvst-8888.inc1.devtunnels.ms';
   const trigger = useScrollTrigger();
   const [active, setActive] = useState(0);
   const [quesFile, setQuesFile] = useState('');
@@ -71,63 +71,65 @@ function Home() {
   return (
     <Box className='wrapper'>
       {trigger && <BacktoTop />}
-      <IconButton
-        disabled={loading}
-        color='primary'
-        onClick={fetchData}
-        sx={{
-          mx: 2,
-          mt: 2,
-          width: 30,
-          height: 30,
-        }}
-      >
-        <AutorenewIcon />
-      </IconButton>
-      <IconButton
-        disabled={loading}
-        color='primary'
-        onClick={() => setInputBox(!inputBox)}
-        sx={{
-          mx: 0,
-          mt: 2,
-          width: 30,
-          height: 30,
-        }}
-      >
-        <ContentPasteGoIcon />
-      </IconButton>
+      <Box position={'sticky'} top={0} zIndex={100} bgcolor={'#000'} pb={1.5}>
+        <IconButton
+          disabled={loading}
+          color='primary'
+          onClick={fetchData}
+          sx={{
+            mx: 2,
+            mt: 2,
+            width: 30,
+            height: 30,
+          }}
+        >
+          <AutorenewIcon />
+        </IconButton>
+        <IconButton
+          disabled={loading}
+          color='primary'
+          onClick={() => setInputBox(!inputBox)}
+          sx={{
+            mx: 0,
+            mt: 2,
+            width: 30,
+            height: 30,
+          }}
+        >
+          <ContentPasteGoIcon />
+        </IconButton>
 
-      <Button
-        variant='contained'
-        color={active === 0 ? 'secondary' : 'primary'}
-        disableElevation
-        disableTouchRipple
-        sx={{ ...buttonContainerStyle, left: 150 }}
-        onClick={() => setActive(0)}
-      >
-        Ques
-      </Button>
-      <Button
-        variant='contained'
-        color={active === 1 ? 'secondary' : 'primary'}
-        disableElevation
-        disableTouchRipple
-        sx={{ ...buttonContainerStyle, left: 230 }}
-        onClick={() => setActive(1)}
-      >
-        Gpt3
-      </Button>
-      <Button
-        variant='contained'
-        color={active === 2 ? 'secondary' : 'primary'}
-        disableElevation
-        disableTouchRipple
-        sx={{ ...buttonContainerStyle, left: 310 }}
-        onClick={() => setActive(2)}
-      >
-        Bard
-      </Button>
+        <Button
+          variant='contained'
+          color={active === 0 ? 'secondary' : 'primary'}
+          disableElevation
+          disableTouchRipple
+          sx={{ ...buttonContainerStyle, left: 150 }}
+          onClick={() => setActive(0)}
+        >
+          Ques
+        </Button>
+        <Button
+          variant='contained'
+          color={active === 1 ? 'secondary' : 'primary'}
+          disableElevation
+          disableTouchRipple
+          sx={{ ...buttonContainerStyle, left: 230 }}
+          onClick={() => setActive(1)}
+        >
+          Gpt3
+        </Button>
+        <Button
+          variant='contained'
+          color={active === 2 ? 'secondary' : 'primary'}
+          disableElevation
+          disableTouchRipple
+          sx={{ ...buttonContainerStyle, left: 310 }}
+          onClick={() => setActive(2)}
+        >
+          Bard
+        </Button>
+      </Box>
       {inputBox && (
         <InputBox sendTexttoServer={sendTexttoServer} loading={loading} />
       )}
