@@ -1,22 +1,18 @@
 import { Box, Button, IconButton } from '@mui/material';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Ques from '../components/Ques';
 import AnsGpt3 from '../components/AnsGpt3';
 import AnsBard from '../components/AnsBard';
 import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import InputBox from '../components/Input';
-// import AddIcon from '@mui/icons-material/Add';
-// import {Button} from '@mui/material';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import BacktoTop from '../utils/backToTop';
 
 function Home() {
-  //  const url = 'http://192.168.56.1:8000';
-  // const url = 'http://192.168.19.66:8000';
-  // const url = 'http://localhost:8888';
-  const url = 'https://h13lsvst-8888.inc1.devtunnels.ms';
-  // const url = 'https://lucid-wave-72717.pktriot.net';
-
+  const url = 'http://localhost:8888';
+  const trigger = useScrollTrigger();
   const [active, setActive] = useState(0);
   const [quesFile, setQuesFile] = useState('');
   const [ansFile, setAnsFile] = useState({
@@ -72,7 +68,8 @@ function Home() {
   }, []);
 
   return (
-    <>
+    <Box className='wrapper'>
+      {trigger && <BacktoTop />}
       <IconButton
         disabled={loading}
         color='primary'
@@ -146,7 +143,7 @@ function Home() {
           <AnsBard ans={ansFile.ans_gemini} />
         )}
       </Box>
-    </>
+    </Box>
   );
 }
 

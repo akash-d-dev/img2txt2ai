@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Box, Typography } from '@mui/material';
-import ResFormatter from '../utils/ResFormatter';
 
 function AnsBard({ ans }) {
   return (

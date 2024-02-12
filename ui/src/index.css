@@ -3,6 +3,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* color: aliceblue; */
 }
 
+p{
+  color: rgb(255, 255, 255) !important;
+}
+h1,h2,h3,h4,h5,h6{
+  color: rgb(255, 255, 255) !important;
+}
 /* Add more global styles here */
+.wrapper{
+  background: #181818 !important;
+}
+html{
+  background: #181818 !important;
+}
