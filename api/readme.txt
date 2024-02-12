@@ -49,3 +49,5 @@ Need more support?
 C:\Users\Asus>pktriot.exe edit --name 'txt2ai'
 Tunnel name updated
 
+
+pktriot.exe tunnel http add --domain lucid-wave-72717.pktriot.net --destination localhost --http 8008 --letsencrypt

@@ -11,10 +11,11 @@ import InputBox from '../components/Input';
 // import {Button} from '@mui/material';
 
 function Home() {
-  //  const urlNetwork = 'http://192.168.56.1:8000';
-  // const urlNetwork = 'http://192.168.19.66:8000';
-  const urlNetwork = 'http://localhost:8008';
-  // const urlNetwork = 'https://lucid-wave-72717.pktriot.net';
+  //  const url = 'http://192.168.56.1:8000';
+  // const url = 'http://192.168.19.66:8000';
+  // const url = 'http://localhost:8888';
+  const url = 'https://h13lsvst-8888.inc1.devtunnels.ms/';
+  // const url = 'https://lucid-wave-72717.pktriot.net';
 
   const [active, setActive] = useState(0);
   const [quesFile, setQuesFile] = useState('');
@@ -37,7 +38,7 @@ function Home() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(urlNetwork);
+      const response = await axios.get(url);
       setQuesFile(response.data.qna_content);
       setAnsFile({
         ans_gpt: response.data.ans_content_gpt,
@@ -54,7 +55,7 @@ function Home() {
   const sendTexttoServer = async (text) => {
     try {
       setLoading(true);
-      await axios.post(urlNetwork, {
+      await axios.post(url, {
         text,
       });
     } catch (error) {
