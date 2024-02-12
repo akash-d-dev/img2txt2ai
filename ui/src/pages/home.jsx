@@ -12,8 +12,9 @@ import InputBox from '../components/Input';
 
 function Home() {
   //  const urlNetwork = 'http://192.168.56.1:8000';
-  // const urlNetwork = 'http://192.168.137.1:8000';
-  const urlNetwork = 'http://localhost:8000';
+  // const urlNetwork = 'http://192.168.19.66:8000';
+  // const urlNetwork = 'http://localhost:8008';
+  const urlNetwork = 'https://lucid-wave-72717.pktriot.net';
 
   const [active, setActive] = useState(0);
   const [quesFile, setQuesFile] = useState('');

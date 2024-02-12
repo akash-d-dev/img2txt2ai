@@ -159,4 +159,4 @@ async def receive_txt(request: Request):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app=app, host="localhost", port=8000)
+    uvicorn.run(app=app, host="localhost", port=8008)
