@@ -9,10 +9,13 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 import InputBox from '../components/Input';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import BacktoTop from '../utils/backToTop';
+// import dotenv from 'dotenv';
 
 function Home() {
-  const url = 'http://localhost:8888';
-  // const url = 'https://h13lsvst-8888.inc1.devtunnels.ms';
+  // dotenv.config('.env');
+  // const url = 'http://localhost:8888';
+  const url = 'https://h13lsvst-8888.inc1.devtunnels.ms';
+  // const url = process.env.REACT_APP_API_URL;
   const trigger = useScrollTrigger();
   const [active, setActive] = useState(0);
   const [quesFile, setQuesFile] = useState('');
