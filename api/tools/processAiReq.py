@@ -55,7 +55,7 @@ class CallAi:
                             Answer:
                             <b> c) By offering a text-based environment for scripting and executing commands </b>
 
-                        Note: If a question is asked without any options, you should do as user asks
+                        Note: If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA TO REPLY.
                         """,
                     }
                 )
@@ -154,7 +154,7 @@ class CallAi:
                             "role": "user",
                             "parts": [
                                 {
-                                    "text": """System prompt: You answer all the questions asked by the user in one reply only.For generating a reply of each question, Use the format shown in the sample response. If a question is asked without any options, you should do as user asks"""
+                                    "text": """System prompt: You answer all the questions asked by the user in one reply only.For generating a reply of each question, Use the format shown in the sample response. If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA AS DEFAULT TO REPLY, until another language is specified."""
                                 }
                             ],
                         },
@@ -162,7 +162,7 @@ class CallAi:
                             "role": "model",
                             "parts": [
                                 {
-                                    "text": "Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will start answering now."
+                                    "text": "Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will generate the code replies in JAVA as default unitl another language is specified. I will start answering now."
                                 }
                             ],
                         },
