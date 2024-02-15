@@ -49,6 +49,7 @@ def createAnsOpenAI():
 
 
 def createAnsHandlerOpenAI():
+    print("Started Ans Generating: OpenAI ")
     error_message, qna_content = CallAi.openAi()
     print(qna_content)
     if error_message is not None:
@@ -77,6 +78,7 @@ def createAnsGemini():
 
 
 def createAnsHandlerGemini():
+    print("Started Ans Generating: Gemini ")
     error_message, qna_content = CallAi.gemini()
     print(qna_content)
     if error_message is not None:
