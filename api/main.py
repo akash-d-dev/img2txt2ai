@@ -182,6 +182,7 @@ def read_root():
     qna_content = ""
     ans_content_gpt = ""
     ans_content_gemini = ""
+    ans_content_gemini_img = ""
 
     with open("temp/qna.txt", "r") as file:
         qna_content = file.read().replace("\n", "<br>")
@@ -198,10 +199,16 @@ def read_root():
         if not ans_content_gemini:
             ans_content_gemini = "-empty-"
 
+    with open("temp/ans_gemini_img.txt", "r") as file:
+        ans_content_gemini_img = file.read().replace("\n", "<br>")
+        if not ans_content_gemini_img:
+            ans_content_gemini_img = "-empty-"
+
     return {
         "qna_content": qna_content,
         "ans_content_gpt": ans_content_gpt,
         "ans_content_gemini": ans_content_gemini,
+        "ans_content_gemini_img": ans_content_gemini_img,
     }
 
 
