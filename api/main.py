@@ -2,15 +2,9 @@ from tools.process_txt import TxtScreenshot
 from tools.process_txt_file import TxtFile
 from tools.processAiReq import CallAi
 from fastapi.middleware.cors import CORSMiddleware
-
-
-# from tools.processEvents import Events
-
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request
 import keyboard
 import uvicorn
-from fastapi.responses import HTMLResponse
-import pyperclip
 
 
 def startApp():
@@ -44,6 +38,12 @@ def clearQnaHandler():
         print("QnA cleared")
 
 
+############################################################################
+# OpenAI
+############################################################################
+
+
+# Create
 def createAnsOpenAI():
     keyboard.add_hotkey("alt+1", createAnsHandlerOpenAI)
 
@@ -63,6 +63,7 @@ def createAnsHandlerOpenAI():
     print("Ans created using OpenAI")
 
 
+# Clear
 def clearAnsOpenAI():
     keyboard.add_hotkey("alt+8", clearAnsHandlerOpenAI)
 
@@ -73,6 +74,12 @@ def clearAnsHandlerOpenAI():
         print("GPT Ans cleared")
 
 
+############################################################################
+# Gemini
+############################################################################
+
+
+# Create
 def createAnsGemini():
     keyboard.add_hotkey("alt+2", createAnsHandlerGemini)
 
@@ -92,6 +99,7 @@ def createAnsHandlerGemini():
     print("Ans created using Gemini")
 
 
+# Clear
 def clearAnsGemini():
     keyboard.add_hotkey("alt+7", clearAnsHandlerGemini)
 
@@ -100,6 +108,43 @@ def clearAnsHandlerGemini():
     with open("temp/ans_gemini.txt", "w") as file:
         file.write("")
         print("Gemini Ans cleared")
+
+
+############################################################################
+# Gemini Img
+############################################################################
+
+
+# Create
+def createAnsGeminiImg():
+    keyboard.add_hotkey("alt+3", createAnsHandlerGeminiImg)
+
+
+def createAnsHandlerGeminiImg():
+    print("Started Img Ans Generating: Gemini ")
+    # error_message, qna_content = CallAi.gemini_img()
+    error_message, qna_content = CallAi.gemini_img()
+    print(qna_content)
+    if error_message is not None:
+        if qna_content is not None:
+            qna_doc = TxtScreenshot.formatTxtErorr(qna_content)
+        else:
+            qna_doc = TxtScreenshot.formatTxtErorr("-No Question Present-")
+    else:
+        qna_doc = qna_content
+    TxtFile.add_a_to_file_gemini_img(qna_doc)
+    print("Ans created using Gemini")
+
+
+# Clear
+def clearAnsGeminiImg():
+    keyboard.add_hotkey("alt+6", clearAnsHandlerGeminiImg)
+
+
+def clearAnsHandlerGeminiImg():
+    with open("temp/ans_gemini_img.txt", "w") as file:
+        file.write("")
+        print("Gemini Img Ans cleared")
 
 
 app = FastAPI()
@@ -117,10 +162,17 @@ app.add_middleware(
 try:
     createQna()
     clearQna()
+
     createAnsOpenAI()
     clearAnsOpenAI()
+
     createAnsGemini()
     clearAnsGemini()
+
+    createAnsGeminiImg()
+    clearAnsGeminiImg()
+
+    print("Hotkeys created")
 except Exception as e:
     print(f"An error occurred: {str(e)}")
 

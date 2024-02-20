@@ -1,6 +1,6 @@
 import openai
-from google.generativeai import GenerativeModel
 import google.generativeai as genai
+from PIL import ImageGrab
 
 
 class CallAi:
@@ -93,12 +93,7 @@ class CallAi:
             try:
                 genai.configure(api_key=API_KEY)
                 # model = genai.GenerativeModel("aqa")
-                model = genai.GenerativeModel("gemini-1.0-pro-001")
-
-                for m in genai.list_models():
-                    if "generateContent" in m.supported_generation_methods:
-                        print(m.name)
-
+                model = genai.GenerativeModel("gemini-1.0")
                 chat = model.start_chat(
                     history=[
                         {
@@ -200,3 +195,61 @@ class CallAi:
                 return "-An error occured-", qna_content
         else:
             return "-Empty File-", qna_content
+
+    def gemini_img():
+
+        image = ImageGrab.grabclipboard()
+        print(image)
+        if image is not None:
+            try:
+                API_KEY = "AIzaSyCFgbIqShroBxKHN_5yTSPEKOtOXbEuD-Y"
+                genai.configure(api_key=API_KEY)
+
+                model = genai.GenerativeModel(model_name="gemini-1.0-pro-vision-latest")
+                prompt_parts = []
+                prompt_parts = [
+                    """
+                    You are a very successful and experienced quiz solver. You help in solving problems in images.
+                    
+                    System prompt: Search for a question in image and solve it, if you cannot find the question then do what you think can help
+                     
+                    If the image has a question then add do not forget to add it in the reply. Wrap the final answer in bold tags like this - <b>Final Answer:{final answer}</b>
+                    
+                    
+                    Sample output -
+                    
+                    
+                     Given the arrival time, burst time and priority of processes, apply Priority Scheduling and calculate the turnaround time. Assume that lower the value, higher the priority.
+
+                    Process	Arrival Time	Burst Time	Priority
+                    P1	0	4	2
+                    P2	3	2	3
+                    P3	5	6	1
+
+                    **Solution**
+                    --PROBLEM OVERVIEW--
+                    First, we need to sort the processes according to their priority. The processes with lower priority will be executed first. So, the order of execution will be P3, P1, P2.
+
+                    --MORE EXPLANAATION IF NEEDED WILL BE ADDED BELOW--
+                    Next, we need to calculate the waiting time for each process. The
+                    For P2, the turnaround time is 11 as it takes 11 units of time to complete its execution.
+
+                    **The final answer is:**
+
+                    P1: Turnaround Time = 9
+                    P2: Turnaround Time = 11
+                    P3: Turnaround Time = 6 
+                    
+                    """,
+                    image,
+                ]
+
+                response = model.generate_content(prompt_parts)
+                return None, response.text
+
+            except Exception as e:
+                print(e)
+                return e, "<b> QnA -An error occured- </b>"
+        else:
+            print("No image found in clipboard.")
+            return None, "-Empty File-"
