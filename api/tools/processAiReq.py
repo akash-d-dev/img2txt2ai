@@ -65,7 +65,7 @@ class CallAi:
                 completion = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     messages=messages,
-                    api_key="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",
+                    api_key="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",
                 )
 
                 if completion.choices[0].message.content is not None:
@@ -89,7 +89,7 @@ class CallAi:
                 qna_content = None
 
         if qna_content:
-            API_KEY = "AIzaSyCFgbIqShroBxKHN_5yTSPEKOtOXbEuD-Y"
+            API_KEY = "AIzaSyBkI2HjGVZ6wKSd8qvCyp8KAHCnL7gHK5Y"
             try:
                 genai.configure(api_key=API_KEY)
                 # model = genai.GenerativeModel("aqa")
