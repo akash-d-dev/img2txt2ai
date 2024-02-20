@@ -33,6 +33,8 @@ function Home() {
     transform: 'translateX(-0%)',
     display: 'flex',
     gap: '10px',
+    width: '60px !important',
+    minWidth: '60px !important',
   };
 
   const fetchData = async () => {
@@ -43,6 +45,7 @@ function Home() {
       setAnsFile({
         ans_gpt: response.data.ans_content_gpt,
         ans_gemini: response.data.ans_content_gemini,
+        ans_gemini_img: response.data.ans_content_gemini_img,
       });
     } catch (error) {
       console.error(error);
@@ -74,7 +77,15 @@ function Home() {
   return (
     <Box className='wrapper'>
       {trigger && <BacktoTop />}
-      <Box position={'sticky'} top={0} zIndex={100} bgcolor={'#000'} pb={1.5}>
+      <Box
+        display={'flex'}
+        position={'sticky'}
+        top={0}
+        zIndex={100}
+        bgcolor={'#000'}
+        pb={1.5}
+        width={'100%'}
+      >
         <IconButton
           disabled={loading}
           color='primary'
@@ -107,7 +118,7 @@ function Home() {
           color={active === 0 ? 'secondary' : 'primary'}
           disableElevation
           disableTouchRipple
-          sx={{ ...buttonContainerStyle, left: 150 }}
+          sx={{ ...buttonContainerStyle, left: 105 }}
           onClick={() => setActive(0)}
         >
           Ques
@@ -117,7 +128,7 @@ function Home() {
           color={active === 1 ? 'secondary' : 'primary'}
           disableElevation
           disableTouchRipple
-          sx={{ ...buttonContainerStyle, left: 230 }}
+          sx={{ ...buttonContainerStyle, left: 175 }}
           onClick={() => setActive(1)}
         >
           Gpt3
@@ -127,10 +138,20 @@ function Home() {
           color={active === 2 ? 'secondary' : 'primary'}
           disableElevation
           disableTouchRipple
-          sx={{ ...buttonContainerStyle, left: 310 }}
+          sx={{ ...buttonContainerStyle, left: 245 }}
           onClick={() => setActive(2)}
         >
           Bard
+        </Button>
+        <Button
+          variant='contained'
+          color={active === 3 ? 'secondary' : 'primary'}
+          disableElevation
+          disableTouchRipple
+          sx={{ ...buttonContainerStyle, left: 315 }}
+          onClick={() => setActive(3)}
+        >
+          Img
         </Button>
       </Box>
       {inputBox && (
@@ -147,6 +168,10 @@ function Home() {
         <br />
         {!loading && !error && active === 2 && (
           <AnsBard ans={ansFile.ans_gemini} />
+        )}
+        <br />
+        {!loading && !error && active === 3 && (
+          <AnsBard ans={ansFile.ans_gemini_img} />
         )}
       </Box>
     </Box>
