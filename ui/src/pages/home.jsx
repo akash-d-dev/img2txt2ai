@@ -1,40 +1,40 @@
-import { Box, Button, IconButton } from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState, useRef } from 'react';
-import Ques from '../components/Ques';
-import AnsGpt3 from '../components/AnsGpt3';
-import AnsBard from '../components/AnsBard';
-import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
-import InputBox from '../components/Input';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import BacktoTop from '../utils/backToTop';
+import { Box, Button, IconButton } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Ques from "../components/Ques";
+import AnsGpt3 from "../components/AnsGpt3";
+import AnsBard from "../components/AnsBard";
+import ContentPasteGoIcon from "@mui/icons-material/ContentPasteGo";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
+import InputBox from "../components/Input";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import BacktoTop from "../utils/backToTop";
 // import dotenv from 'dotenv';
 
 function Home() {
   // dotenv.config('.env');
   // const url = 'http://localhost:8888';
-  const url = 'https://h13lsvst-8888.inc1.devtunnels.ms';
+  const url = "https://h80s07pw-8888.inc1.devtunnels.ms/";
   // const url = process.env.REACT_APP_API_URL;
   const trigger = useScrollTrigger();
   const [active, setActive] = useState(0);
-  const [quesFile, setQuesFile] = useState('');
+  const [quesFile, setQuesFile] = useState("");
   const [ansFile, setAnsFile] = useState({
-    ans_gpt: '',
-    ans_gemini: '',
+    ans_gpt: "",
+    ans_gemini: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [inputBox, setInputBox] = useState(false);
 
   const buttonContainerStyle = {
-    position: 'absolute',
-    top: '12px',
-    transform: 'translateX(-0%)',
-    display: 'flex',
-    gap: '10px',
-    width: '60px !important',
-    minWidth: '60px !important',
+    position: "absolute",
+    top: "12px",
+    transform: "translateX(-0%)",
+    display: "flex",
+    gap: "10px",
+    width: "60px !important",
+    minWidth: "60px !important",
   };
 
   const fetchData = async () => {
@@ -75,20 +75,20 @@ function Home() {
   }, []);
 
   return (
-    <Box className='wrapper'>
+    <Box className="wrapper">
       {trigger && <BacktoTop />}
       <Box
-        display={'flex'}
-        position={'sticky'}
+        display={"flex"}
+        position={"sticky"}
         top={0}
         zIndex={100}
-        bgcolor={'#000'}
+        bgcolor={"#000"}
         pb={1.5}
-        width={'100%'}
+        width={"100%"}
       >
         <IconButton
           disabled={loading}
-          color='primary'
+          color="primary"
           onClick={fetchData}
           sx={{
             mx: 2,
@@ -101,7 +101,7 @@ function Home() {
         </IconButton>
         <IconButton
           disabled={loading}
-          color='primary'
+          color="primary"
           onClick={() => setInputBox(!inputBox)}
           sx={{
             mx: 0,
@@ -114,8 +114,8 @@ function Home() {
         </IconButton>
 
         <Button
-          variant='contained'
-          color={active === 0 ? 'secondary' : 'primary'}
+          variant="contained"
+          color={active === 0 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
           sx={{ ...buttonContainerStyle, left: 105 }}
@@ -124,8 +124,8 @@ function Home() {
           Ques
         </Button>
         <Button
-          variant='contained'
-          color={active === 1 ? 'secondary' : 'primary'}
+          variant="contained"
+          color={active === 1 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
           sx={{ ...buttonContainerStyle, left: 175 }}
@@ -134,8 +134,8 @@ function Home() {
           Gpt3
         </Button>
         <Button
-          variant='contained'
-          color={active === 2 ? 'secondary' : 'primary'}
+          variant="contained"
+          color={active === 2 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
           sx={{ ...buttonContainerStyle, left: 245 }}
@@ -144,8 +144,8 @@ function Home() {
           Bard
         </Button>
         <Button
-          variant='contained'
-          color={active === 3 ? 'secondary' : 'primary'}
+          variant="contained"
+          color={active === 3 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
           sx={{ ...buttonContainerStyle, left: 315 }}
@@ -158,8 +158,8 @@ function Home() {
         <InputBox sendTexttoServer={sendTexttoServer} loading={loading} />
       )}
 
-      <Box display={'flex'} mt={2} mb={12} mx={1}>
-        {loading ? 'Loading...' : error && `Someting went wrong:${error}`}
+      <Box display={"flex"} mt={2} mb={12} mx={1}>
+        {loading ? "Loading..." : error && `Someting went wrong:${error}`}
         {!loading && !error && active === 0 && <Ques ques={quesFile} />}
         <br />
         {!loading && !error && active === 1 && (
