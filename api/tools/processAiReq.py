@@ -25,7 +25,7 @@ class CallAi:
                 messages.append(
                     {
                         "role": "system",
-                        "content": """You are a quiz solver. Help prepare a qna doc, you will be provided with questions, options and some instructions by the user (Sapmle input is given below). Your job is to only pick the corerct option and reply reply in the format shown in this sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. ALSO MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER, MENTION ONLY THE CORRECT OPTION IN THE ANSWER AND QUESTION. DO NOT MENTION ALL THE OPTIONS AS SHOWN IN THE SAMPLE RESPONSE. 
+                        "content": """You are a QUIZ SOLVER. Help prepare a qna doc, you will be provided with questions, options and some instructions by the user (Sapmle input is given below). Your job is to only pick the corerct option and reply reply in the format shown in this sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. ALSO MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER, MENTION ONLY THE CORRECT OPTION IN THE ANSWER AND QUESTION. DO NOT MENTION ALL THE OPTIONS AS SHOWN IN THE SAMPLE RESPONSE. 
 
                         Sample User Input:
 
@@ -93,7 +93,7 @@ class CallAi:
             try:
                 genai.configure(api_key=API_KEY)
                 # model = genai.GenerativeModel("aqa")
-                model = genai.GenerativeModel("gemini-1.0")
+                model = genai.GenerativeModel("gemini-pro")
                 chat = model.start_chat(
                     history=[
                         {
