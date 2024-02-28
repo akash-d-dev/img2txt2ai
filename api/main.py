@@ -1,5 +1,4 @@
 from tools.process_txt import TxtScreenshot
-from tools.process_txt_file import TxtFile
 from handlers.qna_handler import Qna_handler
 from handlers.openai_handler import Openai_handler
 from handlers.gemini_handler import Gemini_handler

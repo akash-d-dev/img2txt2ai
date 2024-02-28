@@ -2,7 +2,6 @@ from PIL import ImageGrab
 import os
 import time
 import uuid
-import pytesseract
 from PIL import Image
 import easyocr
 
