@@ -1,13 +1,22 @@
-python3 -m venv venv
-.\venv\Scripts\activate
+ - Steps to start txt2ai -
 
--create temp folder on same lvl as main-
+python3 -m venv venv
+
+cd .\venv\Scripts\activate
+
+1) create temp folder on same lvl as main-
+2) add: ans_gemini.txt, ans_gemini_img.txt, ans.txt, qna.txt, typer.txt in temp folder
 
 pip3 install -r requirements.txt
 
+uvicorn main:app --host localhost --port 8888  
+
+forward port to 8888, change visibility to public
+
+
+-----------------------------------------------------------------
 uvicorn main:app --reload
 or 
-uvicorn main:app --host localhost --port 8888  
 or
 uvicorn main:app --host 192.168.56.1 --port 8000  
 or 

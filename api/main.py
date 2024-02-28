@@ -128,9 +128,9 @@ try:
     clearAnsGeminiImg()  # alt+6
 
     # Typer
-    createTyper()  # alt+,
-    startTyper()  # alt+.
-    clearTyper()  # alt+/
+    createTyper()  # ctrl+alt+1
+    startTyper()  # ctrl+alt+2
+    clearTyper()  # ctrl+alt+3
 
     print("Hotkeys created")
 except Exception as e:
