@@ -31,3 +31,11 @@ class TxtFile:
         with open(filename, "a") as file:
             file.write(text)
         return True
+
+    def add_t_to_file_typer(text):
+        filename = "temp/" + "typer.txt"
+        text = text + "\n\n"
+
+        with open(filename, "w") as file:
+            file.write(text)
+        return True

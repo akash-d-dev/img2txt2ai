@@ -14,7 +14,6 @@ class CallAi:
                 qna_content = None
 
         if qna_content:
-            print("QnA content: ", qna_content)
             try:
                 messages = [
                     {
@@ -25,37 +24,45 @@ class CallAi:
                 messages.append(
                     {
                         "role": "system",
-                        "content": """You are a QUIZ SOLVER. Help prepare a qna doc, you will be provided with questions, options and some instructions by the user (Sapmle input is given below). Your job is to only pick the corerct option and reply reply in the format shown in this sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. ALSO MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER, MENTION ONLY THE CORRECT OPTION IN THE ANSWER AND QUESTION. DO NOT MENTION ALL THE OPTIONS AS SHOWN IN THE SAMPLE RESPONSE. 
+                        "content": """You are a QUIZ SOLVER. Help solving a quiz. You will be provided with questions, options and some instructions by the user (Sapmle input is given below for referemce). Your job is to only pick the corerct option and reply in the same format shown as shown in sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER, MENTION ONLY THE CORRECT OPTION IN THE ANSWER AND QUESTION. DO NOT MENTION ALL OTHER WRONG OPTIONS.
 
-                        Sample User Input:
+                            Sample User Input:
 
-                         - Ques with options:
+                            - Question you need to answer:
+                            
 
-                            How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
+                                How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
 
-                            By providing advanced image editing tools
+                                By providing advanced image editing tools
 
-                            By simplifying voice recognition functionalities
+                                By simplifying voice recognition functionalities
 
-                            By offering a text-based environment for
+                                By offering a text-based environment for
 
-                            scripting and executing commands
+                                scripting and executing commands
 
-                            By optimizing file storage and retrieval processes
+                                By optimizing file storage and retrieval processes
 
-                            You reply should have this queston listed with all the options
+                                    
+                                
+                                Your reply should have this queston and correct option listed ONLY WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer. Make sure to solve the question.
 
-                            Fill Answer here :
 
-                        Sample Response Expected by you:
 
-                            Question:
-                            How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
+                                Fill Answer here :
 
-                            Answer:
-                            <b> c) By offering a text-based environment for scripting and executing commands </b>
 
-                        Note: If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA TO REPLY.
+                            Sample Response Expected by you:
+
+                                Question:
+                                How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
+
+                                Answer:
+                                <b> c) By offering a text-based environment for scripting and executing commands </b>
+                        
+                        As you can see in the sample response, only the correct option is mentioned in the answer and along with the question and the option is wrapped in bold tags. You should do the same.
+                        
+                        Note: If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA TO REPLY and do not forget to wrap only the correct option in bold tags.
                         """,
                     }
                 )
@@ -116,7 +123,8 @@ class CallAi:
 
                         Sample User Input:
 
-                         - Ques with options:
+                         - Question you need to answer:
+                         
 
                             How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
 
@@ -130,9 +138,14 @@ class CallAi:
 
                             By optimizing file storage and retrieval processes
 
-                            You reply should have this queston listed with all the options
+                                
+                            
+                            Your reply should have this queston and correct option listed ONLY WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer. Make sure to solve the question.
+
+
 
                             Fill Answer here :
+
 
                         Sample Response Expected by you:
 
@@ -163,7 +176,7 @@ class CallAi:
                             "role": "model",
                             "parts": [
                                 {
-                                    "text": "Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will generate the code replies in JAVA as default unitl another language is specified. I will start answering now."
+                                    "text": "Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will generate the code replies in JAVA as default unitl another language is specified."
                                 }
                             ],
                         },
@@ -179,7 +192,7 @@ class CallAi:
                             "role": "model",
                             "parts": [
                                 {
-                                    "text": "Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will start answering now."
+                                    "text": "Understood. I will also wrap the answer in <b> </b> tags. I will start answering now."
                                 }
                             ],
                         },

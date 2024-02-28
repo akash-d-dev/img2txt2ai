@@ -1,6 +1,10 @@
 from tools.process_txt import TxtScreenshot
 from tools.process_txt_file import TxtFile
-from tools.processAiReq import CallAi
+from handlers.qna_handler import Qna_handler
+from handlers.openai_handler import Openai_handler
+from handlers.gemini_handler import Gemini_handler
+from handlers.gemini_img_handler import Gemini_img_handler
+from handlers.typer_handler import Typer_handler
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Request
 import keyboard
@@ -8,34 +12,25 @@ import uvicorn
 
 
 def startApp():
-    while True:
-        print("Starting app")
-        break
+    print("Starting app")
 
 
 def stopApp():
     print("Stopping app")
 
+############################################################################
+# QNA
+############################################################################
 
+
+# Create
 def createQna():
-    keyboard.add_hotkey("alt+0", createQnaHandler)
+    keyboard.add_hotkey("alt+0", Qna_handler.createQnaHandler)
 
 
-def createQnaHandler():
-    text = TxtScreenshot.getTxtFromClipboard()
-    formatted_text = TxtScreenshot.formatTxt(text)
-    TxtFile.add_q_to_file(formatted_text)
-    print("QnA created")
-
-
+# Clear
 def clearQna():
-    keyboard.add_hotkey("alt+9", clearQnaHandler)
-
-
-def clearQnaHandler():
-    with open("temp/qna.txt", "w") as file:
-        file.write("")
-        print("QnA cleared")
+    keyboard.add_hotkey("alt+9", Qna_handler.clearQnaHandler)
 
 
 ############################################################################
@@ -45,33 +40,11 @@ def clearQnaHandler():
 
 # Create
 def createAnsOpenAI():
-    keyboard.add_hotkey("alt+1", createAnsHandlerOpenAI)
-
-
-def createAnsHandlerOpenAI():
-    print("Started Ans Generating: OpenAI ")
-    error_message, qna_content = CallAi.openAi()
-    print(qna_content)
-    if error_message is not None:
-        if qna_content is not None:
-            qna_doc = TxtScreenshot.formatTxtErorr(qna_content)
-        else:
-            qna_doc = TxtScreenshot.formatTxtErorr("-No Question Present-")
-    else:
-        qna_doc = qna_content
-    TxtFile.add_a_to_file_openai(qna_doc)
-    print("Ans created using OpenAI")
-
+    keyboard.add_hotkey("alt+1", Openai_handler.createAnsHandlerOpenAI)
 
 # Clear
 def clearAnsOpenAI():
-    keyboard.add_hotkey("alt+8", clearAnsHandlerOpenAI)
-
-
-def clearAnsHandlerOpenAI():
-    with open("temp/ans.txt", "w") as file:
-        file.write("")
-        print("GPT Ans cleared")
+    keyboard.add_hotkey("alt+8", Openai_handler.clearAnsHandlerOpenAI)
 
 
 ############################################################################
@@ -81,33 +54,11 @@ def clearAnsHandlerOpenAI():
 
 # Create
 def createAnsGemini():
-    keyboard.add_hotkey("alt+2", createAnsHandlerGemini)
-
-
-def createAnsHandlerGemini():
-    print("Started Ans Generating: Gemini ")
-    error_message, qna_content = CallAi.gemini()
-    print(qna_content)
-    if error_message is not None:
-        if qna_content is not None:
-            qna_doc = TxtScreenshot.formatTxtErorr(qna_content)
-        else:
-            qna_doc = TxtScreenshot.formatTxtErorr("-No Question Present-")
-    else:
-        qna_doc = qna_content
-    TxtFile.add_a_to_file_gemini(qna_doc)
-    print("Ans created using Gemini")
-
+    keyboard.add_hotkey("alt+2", Gemini_handler.createAnsHandlerGemini)
 
 # Clear
 def clearAnsGemini():
-    keyboard.add_hotkey("alt+7", clearAnsHandlerGemini)
-
-
-def clearAnsHandlerGemini():
-    with open("temp/ans_gemini.txt", "w") as file:
-        file.write("")
-        print("Gemini Ans cleared")
+    keyboard.add_hotkey("alt+7", Gemini_handler.clearAnsHandlerGemini)
 
 
 ############################################################################
@@ -117,37 +68,37 @@ def clearAnsHandlerGemini():
 
 # Create
 def createAnsGeminiImg():
-    keyboard.add_hotkey("alt+3", createAnsHandlerGeminiImg)
-
-
-def createAnsHandlerGeminiImg():
-    print("Started Img Ans Generating: Gemini ")
-    # error_message, qna_content = CallAi.gemini_img()
-    error_message, qna_content = CallAi.gemini_img()
-    print(qna_content)
-    if error_message is not None:
-        if qna_content is not None:
-            qna_doc = TxtScreenshot.formatTxtErorr(qna_content)
-        else:
-            qna_doc = TxtScreenshot.formatTxtErorr("-No Question Present-")
-    else:
-        qna_doc = qna_content
-    TxtFile.add_a_to_file_gemini_img(qna_doc)
-    print("Ans created using Gemini")
+    keyboard.add_hotkey("alt+3", Gemini_img_handler.createAnsHandlerGeminiImg)
 
 
 # Clear
 def clearAnsGeminiImg():
-    keyboard.add_hotkey("alt+6", clearAnsHandlerGeminiImg)
+    keyboard.add_hotkey("alt+6", Gemini_img_handler.clearAnsHandlerGeminiImg)
 
 
-def clearAnsHandlerGeminiImg():
-    with open("temp/ans_gemini_img.txt", "w") as file:
-        file.write("")
-        print("Gemini Img Ans cleared")
+##################################################################
+# Typer
+##################################################################
+
+
+# Create
+def createTyper():
+    keyboard.add_hotkey("ctrl+alt+1", Typer_handler.createTyperHandler)
+
+
+# Start
+def startTyper():
+    keyboard.add_hotkey("ctrl+alt+2", Typer_handler.startTyperHandler)
+
+
+# Clear
+def clearTyper():
+    keyboard.add_hotkey("ctrl+alt+3", Typer_handler.clearTyperHandler)
 
 
 app = FastAPI()
+
+
 ##################################################################
 # Setup CORS
 ##################################################################
@@ -160,49 +111,46 @@ app.add_middleware(
 )
 
 try:
-    createQna()
-    clearQna()
+    # Questions
+    createQna()  # alt+0
+    clearQna()  # alt+9
 
-    createAnsOpenAI()
-    clearAnsOpenAI()
+    # OpenAI
+    createAnsOpenAI()  # alt+1
+    clearAnsOpenAI()  # alt+8
 
-    createAnsGemini()
-    clearAnsGemini()
+    # Gemini
+    createAnsGemini()  # alt+2
+    clearAnsGemini()  # alt+7
 
-    createAnsGeminiImg()
-    clearAnsGeminiImg()
+    # Gemini Img
+    createAnsGeminiImg()  # alt+3
+    clearAnsGeminiImg()  # alt+6
+
+    # Typer
+    createTyper()  # alt+,
+    startTyper()  # alt+.
+    clearTyper()  # alt+/
 
     print("Hotkeys created")
 except Exception as e:
     print(f"An error occurred: {str(e)}")
 
 
+def read_file_content(file_path):
+    with open(file_path, "r") as file:
+        content = file.read().replace("\n", "<br>")
+        if not content:
+            content = "-empty-"
+        return content
+
+
 @app.get("/")
 def read_root():
-    qna_content = ""
-    ans_content_gpt = ""
-    ans_content_gemini = ""
-    ans_content_gemini_img = ""
-
-    with open("temp/qna.txt", "r") as file:
-        qna_content = file.read().replace("\n", "<br>")
-        if not qna_content:
-            qna_content = "-empty-"
-
-    with open("temp/ans.txt", "r") as file:
-        ans_content_gpt = file.read().replace("\n", "<br>")
-        if not ans_content_gpt:
-            ans_content_gpt = "-empty-"
-
-    with open("temp/ans_gemini.txt", "r") as file:
-        ans_content_gemini = file.read().replace("\n", "<br>")
-        if not ans_content_gemini:
-            ans_content_gemini = "-empty-"
-
-    with open("temp/ans_gemini_img.txt", "r") as file:
-        ans_content_gemini_img = file.read().replace("\n", "<br>")
-        if not ans_content_gemini_img:
-            ans_content_gemini_img = "-empty-"
+    qna_content = read_file_content("temp/qna.txt")
+    ans_content_gpt = read_file_content("temp/ans.txt")
+    ans_content_gemini = read_file_content("temp/ans_gemini.txt")
+    ans_content_gemini_img = read_file_content("temp/ans_gemini_img.txt")
 
     return {
         "qna_content": qna_content,
