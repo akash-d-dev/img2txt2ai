@@ -36,9 +36,11 @@ class Typer:
             with open("temp/typer.txt", "r") as text_file:
                 text_to_type = text_file.read()
 
+            formatted_text_to_type = text_to_type.replace("\n", "`\n")
+
             time.sleep(2)
 
-            Typer.type_text_fast(text_to_type, typing_speed_wpm)
+            Typer.type_text_fast(formatted_text_to_type, typing_speed_wpm)
 
         except Exception as e:
             print(f"An error occurred: {str(e)}")
