@@ -3,7 +3,7 @@ class TxtFile:
         filename = "temp/" + "qna.txt"
         text = text + "\n\n"
 
-        with open(filename, "a") as file:
+        with open(filename, "a+") as file:
             file.write(text)
         return True
 
@@ -12,7 +12,7 @@ class TxtFile:
         filename = "temp/" + "ans.txt"
         text = text + "\n\n"
 
-        with open(filename, "a") as file:
+        with open(filename, "a+") as file:
             file.write(text)
         return True
 
@@ -20,7 +20,7 @@ class TxtFile:
         filename = "temp/" + "ans_gemini.txt"
         text = text + "\n\n"
 
-        with open(filename, "a") as file:
+        with open(filename, "a+") as file:
             file.write(text)
         return True
 
@@ -28,7 +28,7 @@ class TxtFile:
         filename = "temp/" + "ans_gemini_img.txt"
         text = text + "\n\n"
 
-        with open(filename, "a") as file:
+        with open(filename, "a+") as file:
             file.write(text)
         return True
 
@@ -36,6 +36,6 @@ class TxtFile:
         filename = "temp/" + "typer.txt"
         text = text + "\n\n"
 
-        with open(filename, "w") as file:
+        with open(filename, "a+") as file:
             file.write(text)
         return True
