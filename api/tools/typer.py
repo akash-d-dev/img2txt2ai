@@ -8,6 +8,7 @@ class Typer:
 
     def type_text_fast(text, wpm):
         try:
+            space = False
             words = text.split()
             seconds_per_word = 60 / wpm
 
@@ -16,11 +17,15 @@ class Typer:
                     if not Typer.typing_continues:
                         return
                     if char == "`":
+                        space = False
                         pyautogui.press("enter")
                         continue
+                    else:
+                        space = True
                     pyautogui.typewrite(char)
                     time.sleep(seconds_per_word / len(word) / 10)
-                pyautogui.press("space")
+                if space:
+                    pyautogui.press("space")
         except Exception as e:
             print(f"An error occurred: {str(e)}")
 
