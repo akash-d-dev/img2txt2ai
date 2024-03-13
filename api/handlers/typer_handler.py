@@ -11,8 +11,8 @@ class Typer_handler:
         print("Typer text created")
 
     def startTyperHandler():
-        Typer.start_typing(typing_speed_wpm=500)
         print("Typer started")
+        Typer.start_typing(typing_speed_wpm=500)
 
     def clearTyperHandler():
         with open("temp/typer.txt", "w") as file:
