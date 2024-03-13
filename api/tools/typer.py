@@ -5,6 +5,7 @@ import keyboard
 
 class Typer:
     typing_continues = True
+    pause = False
 
     def type_text_fast(text, wpm):
         try:
@@ -20,6 +21,9 @@ class Typer:
                 for char in word:
                     if not Typer.typing_continues:
                         return
+                    if Typer.pause:
+                        while Typer.pause:
+                            time.sleep(1)
                     if char == "`":
                         space = False
                         if not current_line_empty or not next_line_empty:
@@ -45,10 +49,24 @@ class Typer:
         Typer.typing_continues = False
         print("Typing stopped")
 
+    def pause_typing():
+        if Typer.typing_continues:
+            Typer.pause = True
+            print("Typing paused")
+
+    def resume_typing():
+        if Typer.typing_continues:
+            Typer.pause = False
+            print("Typing resumed")
+
     def start_typing(typing_speed_wpm):
         try:
             Typer.typing_continues = True
+            pyautogui.FAILSAFE = False
+
             keyboard.add_hotkey("esc", lambda: Typer.stop_program(), suppress=True)
+            keyboard.add_hotkey("alt+[", lambda: Typer.pause_typing(), suppress=True)
+            keyboard.add_hotkey("alt+]", lambda: Typer.resume_typing(), suppress=True)
 
             with open("temp/typer.txt", "r") as text_file:
                 text_to_type = text_file.read()
