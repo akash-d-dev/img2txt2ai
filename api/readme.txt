@@ -5,8 +5,8 @@ python3 -m venv venv
 cd .\venv\Scripts\activate
 
 1) create temp folder on same lvl as main-
-2) add: ans_gemini.txt, ans_gemini_img.txt, ans.txt, qna.txt, typer.txt in temp folder
-
+2) rename sample temp to temp
+3) rename Constants.txt to Constants.py and add API keys
 pip3 install -r requirements.txt
 
 uvicorn main:app --host localhost --port 8888  
