@@ -26,8 +26,8 @@ class Typer:
                             pyautogui.typewrite(" ")
                             if current_line_empty:
                                 pyautogui.press("backspace")
-                        pyautogui.press("enter")
-                        # pyautogui.typewrite("/n")
+                        # pyautogui.press("enter")
+                        pyautogui.typewrite("\n")
 
                         continue
                     else:
@@ -53,7 +53,7 @@ class Typer:
             with open("temp/typer.txt", "r") as text_file:
                 text_to_type = text_file.read()
 
-            formatted_text_to_type = text_to_type.replace("\n", "` \n")
+            formatted_text_to_type = text_to_type.replace("\n", "`\n")
 
             time.sleep(2)
 
@@ -61,21 +61,3 @@ class Typer:
 
         except Exception as e:
             print(f"An error occurred: {str(e)}")
-
-    # def type_text_fast(text, wpm):
-    #     try:
-    #         words = text.split()
-    #         seconds_per_word = 60 / wpm
-
-    #         for word in words:
-    #             for char in word:
-    #                 if not Typer.typing_continues:
-    #                     return
-    #                 if char == "`":
-    #                     pyautogui.press("enter")
-    #                     continue
-    #                 pyautogui.typewrite(char)
-    #                 time.sleep(seconds_per_word / len(word) / 10)
-    #             pyautogui.press("space")
-    #     except Exception as e:
-    #         print(f"An error occurred: {str(e)}")

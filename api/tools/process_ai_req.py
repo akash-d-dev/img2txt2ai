@@ -1,6 +1,7 @@
 import openai
 import google.generativeai as genai
 from PIL import ImageGrab
+from Constants import Constants
 
 
 class CallAi:
@@ -70,9 +71,9 @@ class CallAi:
                 messages.append({"role": "user", "content": f"{qna_content}"})
 
                 completion = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
+                    model=Constants.OPENAI_MODEL,
                     messages=messages,
-                    api_key="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",
+                    api_key=Constants.OPENAI_API_KEY,
                 )
 
                 if completion.choices[0].message.content is not None:
@@ -96,11 +97,9 @@ class CallAi:
                 qna_content = None
 
         if qna_content:
-            API_KEY = "AIzaSyCFgbIqShroBxKHN_5yTSPEKOtOXbEuD-Y"
             try:
-                genai.configure(api_key=API_KEY)
-                # model = genai.GenerativeModel("aqa")
-                model = genai.GenerativeModel("gemini-pro")
+                genai.configure(api_key=Constants.GEMINI_API_KEY)
+                model = genai.GenerativeModel(Constants.GEMINI_MODEL)
                 chat = model.start_chat(
                     history=[
                         {
@@ -199,12 +198,9 @@ class CallAi:
                     ]
                 )
                 reply = chat.send_message(qna_content)
-                print(reply.text)
-
                 return None, reply.text
 
             except Exception as e:
-                # raise ValueError("")
                 return "-An error occured-", qna_content
         else:
             return "-Empty File-", qna_content
@@ -215,10 +211,9 @@ class CallAi:
         print(image)
         if image is not None:
             try:
-                API_KEY = "AIzaSyCFgbIqShroBxKHN_5yTSPEKOtOXbEuD-Y"
-                genai.configure(api_key=API_KEY)
+                genai.configure(api_key=Constants.GEMINI_API_KEY)
 
-                model = genai.GenerativeModel(model_name="gemini-1.0-pro-vision-latest")
+                model = genai.GenerativeModel(model_name=Constants.GEMINI_IMG_MODEL)
                 prompt_parts = []
                 prompt_parts = [
                     """
