@@ -13,11 +13,7 @@ class Typer:
             words = text.split()
             seconds_per_word = 60 / wpm
 
-            for i, word in enumerate(words):
-
-                current_line_empty = i > 0 and len(words[i - 1]) == 1
-                next_line_empty = i < len(words) - 1 and len(words[i + 1]) == 1
-
+            for word in words:
                 for char in word:
                     if not Typer.typing_continues:
                         return
@@ -26,13 +22,10 @@ class Typer:
                             time.sleep(1)
                     if char == "`":
                         space = False
-                        if not current_line_empty or not next_line_empty:
-                            pyautogui.typewrite(" ")
-                            if current_line_empty:
-                                pyautogui.press("backspace")
-                        # pyautogui.press("enter")
-                        pyautogui.typewrite("\n")
-
+                        pyautogui.typewrite(" ")
+                        if word == "`":
+                            pyautogui.press("backspace")
+                        pyautogui.press("enter")
                         continue
                     else:
                         space = True
