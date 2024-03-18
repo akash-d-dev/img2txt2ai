@@ -12,7 +12,7 @@ class Typer_handler:
 
     def startTyperHandler():
         print("Typer started")
-        Typer.start_typing(typing_speed_wpm=500)
+        Typer.start_typing()
 
     def clearTyperHandler():
         with open("temp/typer.txt", "w") as file:

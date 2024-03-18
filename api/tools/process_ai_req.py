@@ -2,6 +2,7 @@ import openai
 import google.generativeai as genai
 from PIL import ImageGrab
 from Constants import Constants
+from tools.process_txt import TxtScreenshot
 
 
 class CallAi:
@@ -65,6 +66,56 @@ class CallAi:
                         
                         Note: If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA TO REPLY and do not forget to wrap only the correct option in bold tags.
                         """,
+                    }
+                )
+                # messages.append(CallAi.systemPrompt)
+                messages.append({"role": "user", "content": f"{qna_content}"})
+
+                completion = openai.ChatCompletion.create(
+                    model=Constants.OPENAI_MODEL,
+                    messages=messages,
+                    api_key=Constants.OPENAI_API_KEY,
+                )
+
+                if completion.choices[0].message.content is not None:
+                    reply = completion.choices[0].message.content
+                    # print(reply)
+                    return None, reply
+                else:
+                    # raise Exception("Failed to generate response")
+                    return "-An error occured-"
+            except Exception as e:
+                # raise ValueError("")
+                return "-An error occured-", qna_content
+        else:
+            return "-Empty File-", qna_content
+
+    def openAiCode():
+
+        qna_content = TxtScreenshot.getTxtFromClipboard()
+
+        if qna_content:
+            try:
+                messages = [
+                    {
+                        "role": "system",
+                        "content": "Act as a helpful assistant",
+                    },
+                ]
+                messages.append(
+                    {
+                        "role": "system",
+                        "content": f"""You are a Coder. Help solving a coding problem. You will be provided with a coding problem and some instructions by the user. Your job is to only write the code and reply in the same format shown as shown in sample response. USE {Constants.CODE_LANGUAGE} AS DEFAULT TO REPLY, until another language is specified.
+                        
+                        
+                        Here are some instructions for you:
+                        1) Do not write comments
+                        2) Always take input form user so that the code is dynamic
+                        3) Use leetcode ready code, but still write the main function and take input from user
+                        4) Keep the code redeapble and clean  
+                        5) Reply only with the code, no explanation is needed
+                        6) Do not do any formatting in your reply like adding ``` ``` or anything
+                            """,
                     }
                 )
                 # messages.append(CallAi.systemPrompt)

@@ -1,6 +1,7 @@
 import pyautogui
 import time
 import keyboard
+from Constants import Constants
 
 
 class Typer:
@@ -52,7 +53,7 @@ class Typer:
             Typer.pause = False
             print("Typing resumed")
 
-    def start_typing(typing_speed_wpm):
+    def start_typing():
         try:
             Typer.typing_continues = True
             pyautogui.FAILSAFE = False
@@ -68,7 +69,7 @@ class Typer:
 
             time.sleep(2)
 
-            Typer.type_text_fast(formatted_text_to_type, typing_speed_wpm)
+            Typer.type_text_fast(formatted_text_to_type, Constants.TYPING_SPEED)
 
         except Exception as e:
             print(f"An error occurred: {str(e)}")
