@@ -33,7 +33,7 @@ const CopyToClipBtn = ({ active, quesFile, ansFile }) => {
       sx={{
         position: "fixed",
         bottom: "70px",
-        left: "80%",
+        left: "75%",
         zIndex: "100",
         bgcolor: "#585858",
         p: 2.5,
