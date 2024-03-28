@@ -6,7 +6,7 @@ class Qna_handler:
     def createQnaHandler():
         text = TxtScreenshot.getTxtFromClipboard()
         formatted_text = TxtScreenshot.formatTxt(text)
-        TxtFile.add_q_to_file(formatted_text)
+        TxtFile.add_q_to_file_qna(formatted_text)
         print("QnA created")
 
     def clearQnaHandler():
