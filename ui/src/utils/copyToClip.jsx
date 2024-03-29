@@ -8,7 +8,8 @@ const CopyToClipBtn = ({ active, quesFile, ansFile }) => {
 
   const copyToClipboard = (text) => {
     const textarea = document.createElement("textarea");
-    textarea.value = text;
+    const replacedText = text.replace(/<br>/g, "\n").replace(/&nbsp;/g, " ");
+    textarea.textContent = replacedText;
     document.body.appendChild(textarea);
     textarea.select();
     document.execCommand("copy");
@@ -20,11 +21,30 @@ const CopyToClipBtn = ({ active, quesFile, ansFile }) => {
     setTimeout(() => {
       setCopying(false);
     }, 500);
-    if (active === 0) copyToClipboard(quesFile.qna_prompt);
-    if (active === 1) copyToClipboard(ansFile.ans_gpt);
-    if (active === 2) copyToClipboard(ansFile.ans_gemini);
-    if (active === 3) copyToClipboard(ansFile.ans_gemini_img);
-    if (active === 4) copyToClipboard(quesFile.qna);
+
+    let textToCopy = "";
+
+    switch (active) {
+      case 0:
+        textToCopy = quesFile.qna_prompt;
+        break;
+      case 1:
+        textToCopy = ansFile.ans_gpt;
+        break;
+      case 2:
+        textToCopy = ansFile.ans_gemini;
+        break;
+      case 3:
+        textToCopy = ansFile.ans_gemini_img;
+        break;
+      case 4:
+        textToCopy = quesFile.qna;
+        break;
+      default:
+        textToCopy = "";
+    }
+
+    copyToClipboard(textToCopy);
   };
 
   return (
