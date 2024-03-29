@@ -46,7 +46,7 @@ def createPaste():
 
 
 # Clear
-def ClearPaste():
+def clearPaste():
     keyboard.add_hotkey("ctrl+alt+9", Paste_handler.clearPasteHandler)
 
 
@@ -140,7 +140,7 @@ app.add_middleware(
 try:
     # Direct Paste
     createPaste()  # ctrl+alt+0
-    ClearPaste()  # ctrl+alt+9
+    clearPaste()  # ctrl+alt+9
 
     # Questions
     createQna()  # alt+0
