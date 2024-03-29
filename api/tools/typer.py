@@ -40,7 +40,9 @@ class Typer:
             print(f"An error occurred: {str(e)}")
 
     def stop_program():
+        Typer.pause = False
         Typer.typing_continues = False
+
         print("Typing stopped")
 
     def pause_typing():
