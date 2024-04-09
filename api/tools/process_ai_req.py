@@ -3,6 +3,7 @@ import google.generativeai as genai
 from PIL import ImageGrab
 from Constants import Constants
 from tools.process_txt import TxtScreenshot
+from tools.read_file import ReadFile
 
 
 class CallAi:
@@ -92,7 +93,7 @@ class CallAi:
 
     def openAiCode():
 
-        qna_content = TxtScreenshot.getTxtFromClipboard()
+        qna_content = ReadFile.read_file_content("temp/paste.txt")
 
         if qna_content:
             try:

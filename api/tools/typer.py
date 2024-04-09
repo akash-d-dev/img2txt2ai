@@ -58,9 +58,9 @@ class Typer:
     def start_typing():
         try:
             Typer.typing_continues = True
-            pyautogui.FAILSAFE = False
+            # pyautogui.FAILSAFE = False
 
-            keyboard.add_hotkey("esc", lambda: Typer.stop_program(), suppress=True)
+            # keyboard.add_hotkey("esc", lambda: Typer.stop_program(), suppress=True)
             keyboard.add_hotkey("alt+[", lambda: Typer.pause_typing(), suppress=True)
             keyboard.add_hotkey("alt+]", lambda: Typer.resume_typing(), suppress=True)
 
