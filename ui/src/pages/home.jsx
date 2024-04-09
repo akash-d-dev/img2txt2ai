@@ -1,11 +1,11 @@
-import { Box, Button, IconButton } from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState, useRef } from 'react';
-import Ques from '../components/Ques';
-import AnsGpt3 from '../components/AnsGpt3';
-import AnsBard from '../components/AnsBard';
-import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
+import { Box, Button, IconButton } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState, useRef } from "react";
+import Ques from "../components/Ques";
+import AnsGpt3 from "../components/AnsGpt3";
+import AnsBard from "../components/AnsBard";
+import ContentPasteGoIcon from "@mui/icons-material/ContentPasteGo";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
 import InputBox from "../components/Input";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import BacktoTop from "../utils/backToTop";
@@ -13,7 +13,7 @@ import CopyToClipBtn from "../utils/copyToClip";
 
 function Home() {
   // const url = "http://localhost:8888";
-  const url = "https://h13lsvst-8888.inc1.devtunnels.ms";
+  const url = "https://v46p8kh7-8888.euw.devtunnels.ms/";
   // const url = process.env.REACT_APP_API_URL;
   const trigger = useScrollTrigger();
   const [active, setActive] = useState(0);
@@ -82,7 +82,7 @@ function Home() {
   }, []);
 
   return (
-    <Box className='wrapper'>
+    <Box className="wrapper">
       {trigger && <BacktoTop />}
       <CopyToClipBtn active={active} quesFile={quesFile} ansFile={ansFile} />
       <Box
@@ -96,7 +96,7 @@ function Home() {
       >
         <IconButton
           disabled={loading}
-          color='primary'
+          color="primary"
           onClick={fetchData}
           sx={{
             mx: 0.5,
@@ -109,7 +109,7 @@ function Home() {
         </IconButton>
         <IconButton
           disabled={loading}
-          color='primary'
+          color="primary"
           onClick={() => setInputBox(!inputBox)}
           sx={{
             mx: 0,
@@ -122,7 +122,7 @@ function Home() {
         </IconButton>
 
         <Button
-          variant='contained'
+          variant="contained"
           color={active === 0 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
@@ -132,7 +132,7 @@ function Home() {
           Ques
         </Button>
         <Button
-          variant='contained'
+          variant="contained"
           color={active === 1 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
@@ -142,7 +142,7 @@ function Home() {
           Gpt3
         </Button>
         <Button
-          variant='contained'
+          variant="contained"
           color={active === 2 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
@@ -152,7 +152,7 @@ function Home() {
           Bard
         </Button>
         <Button
-          variant='contained'
+          variant="contained"
           color={active === 3 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
@@ -162,7 +162,7 @@ function Home() {
           Img
         </Button>
         <Button
-          variant='contained'
+          variant="contained"
           color={active === 4 ? "secondary" : "primary"}
           disableElevation
           disableTouchRipple
