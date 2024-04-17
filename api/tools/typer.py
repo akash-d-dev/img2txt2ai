@@ -60,7 +60,8 @@ class Typer:
             Typer.typing_continues = True
             pyautogui.FAILSAFE = Constants.STOP_ON_MOUSE_IN_CORNER
 
-            keyboard.add_hotkey("esc", lambda: Typer.stop_program(), suppress=True)
+            if Constants.STOP_ON_ESC:
+                keyboard.add_hotkey("esc", lambda: Typer.stop_program(), suppress=True)
             keyboard.add_hotkey("alt+[", lambda: Typer.pause_typing(), suppress=True)
             keyboard.add_hotkey("alt+]", lambda: Typer.resume_typing(), suppress=True)
 

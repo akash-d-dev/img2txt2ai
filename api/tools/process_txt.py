@@ -16,11 +16,10 @@ class TxtScreenshot:
             text += " - Question you need to answer:"
             text += "\n\n\n"
             text += qna
-            text += "\n\n\n"
-            text += "Fill Answer here :"
-            text += "\n\n\n"
-            text += "Your reply should have this queston and correct option listed ONLY WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer. Make sure to solve the question."
-            text += "\n\n\n"
+            text += "\n\n"
+            text += "PICK ONE CORRECT OPTION"
+            text += "\n\n"
+            text += "Your reply should have this question(if question has more than 2 sentences or is long then use ... to make it short but mention the last word at the end) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer."
         else:
             text += qna
         return text

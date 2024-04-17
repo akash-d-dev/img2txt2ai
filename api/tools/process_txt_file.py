@@ -2,9 +2,9 @@ class TxtFile:
 
     def add_to_file(filename, text, gap2x=True):
         if gap2x:
-            text = text + "\n\n"
+            text = text + "\n\n\n"
         else:
-            text = text + "\n"
+            text = text + "\n\n"
 
         with open(filename, "a+") as file:
             file.write(text)

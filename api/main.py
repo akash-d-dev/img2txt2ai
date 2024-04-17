@@ -20,6 +20,7 @@ def startApp():
 def stopApp():
     print("Stopping app")
 
+
 ############################################################################
 # QNA
 ############################################################################
@@ -59,6 +60,7 @@ def clearPaste():
 def createAnsOpenAI():
     keyboard.add_hotkey("alt+1", Openai_handler.createAnsHandlerOpenAI)
 
+
 # Clear
 def clearAnsOpenAI():
     keyboard.add_hotkey("alt+8", Openai_handler.clearAnsHandlerOpenAI)
@@ -82,6 +84,7 @@ def createAnsOpenAICode():
 # Create
 def createAnsGemini():
     keyboard.add_hotkey("alt+2", Gemini_handler.createAnsHandlerGemini)
+
 
 # Clear
 def clearAnsGemini():

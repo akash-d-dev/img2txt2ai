@@ -2,7 +2,6 @@ import openai
 import google.generativeai as genai
 from PIL import ImageGrab
 from Constants import Constants
-from tools.process_txt import TxtScreenshot
 from tools.read_file import ReadFile
 
 
@@ -29,43 +28,64 @@ class CallAi:
                         "role": "system",
                         "content": """You are a QUIZ SOLVER. Help solving a quiz. You will be provided with questions, options and some instructions by the user (Sapmle input is given below for referemce). Your job is to only pick the corerct option and reply in the same format shown as shown in sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER, MENTION ONLY THE CORRECT OPTION IN THE ANSWER AND QUESTION. DO NOT MENTION ALL OTHER WRONG OPTIONS.
 
-                            Sample User Input:
-
-                            - Question you need to answer:
-                            
-
-                                How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
-
-                                By providing advanced image editing tools
-
-                                By simplifying voice recognition functionalities
-
-                                By offering a text-based environment for
-
-                                scripting and executing commands
-
-                                By optimizing file storage and retrieval processes
-
-                                    
-                                
-                                Your reply should have this queston and correct option listed ONLY WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer. Make sure to solve the question.
-
-
-
-                                Fill Answer here :
-
-
-                            Sample Response Expected by you:
-
-                                Question:
-                                How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
-
-                                Answer:
-                                <b> c) By offering a text-based environment for scripting and executing commands </b>
+                        Sample User Input:
                         
-                        As you can see in the sample response, only the correct option is mentioned in the answer and along with the question and the option is wrapped in bold tags. You should do the same.
                         
-                        Note: If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA TO REPLY and do not forget to wrap only the correct option in bold tags.
+                        
+                        - Question you need to answer:
+                        
+
+                        A local library struggles with low visitation. They transform a section into a community co-working space. Which aspect of lateral thinking does this transformation illustrate?
+
+                        No lateral thinking aspect is utilised
+
+                        Problem Solving
+
+                        Description
+
+                        Trimming and Splitting
+
+
+                        PICK ONE CORRECT OPTION
+
+                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+
+
+                        - Question you need to answer:
+
+
+                        The students of XYZ school are struggling with academic stress. Their performance has dropped significantly in the recent times. They introduce mindfulness sessions. Which lateral thinking aspect does this solution highlight?
+
+                        Problem Solving
+
+                        Design
+
+                        Abstraction and Extraction
+
+                        Description
+
+
+                        PICK ONE CORRECT OPTION
+
+                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+
+
+
+                        Sample Response Expected by you:
+                        
+
+                        Question: A local library struggles with low visitation. They transform a section into a community co-working space...illustrate?
+
+                        <b>Answer: B) Problem Solving</b>
+
+                        Question: The students of XYZ school are struggling with academic stress. Their performance has dropped significantly in the recent times...highlight?
+
+                        <b>Answer: A) Problem Solving</b>
+
+                        
+                       
+                        
+                        NOTE: As you can see in the sample response, only the correct option is mentioned in the answer and along with the question and the option is wrapped in bold tags. You should do the same. If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA TO REPLY and do not forget to wrap only the correct option in bold tags.
                         """,
                     }
                 )
@@ -113,7 +133,7 @@ class CallAi:
                         1) Do not write comments
                         2) Always take input form user so that the code is dynamic
                         3) Use leetcode ready code, but still write the main function and take input from user
-                        4) Keep the code redeapble and clean  
+                        4) Keep the code readable and clean  
                         5) Reply only with the code, no explanation is needed
                         6) Do not do any formatting in your reply like adding ``` ``` or anything
                             """,
@@ -173,40 +193,61 @@ class CallAi:
                                     "text": """System prompt: Help prepare a qna doc, you will be provided with questions, options and some instructions by the user (Sapmle input is given below). Your job is to only pick the corerct option and reply reply in the format shown in this sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. ALSO MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER AS SHOWN IN THE SAMPLE RESPONSE.
 
                         Sample User Input:
+                        
+                        
+                        
+                        - Question you need to answer:
+                        
 
-                         - Question you need to answer:
-                         
+                        A local library struggles with low visitation. They transform a section into a community co-working space. Which aspect of lateral thinking does this transformation illustrate?
 
-                            How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
+                        No lateral thinking aspect is utilised
 
-                            By providing advanced image editing tools
+                        Problem Solving
 
-                            By simplifying voice recognition functionalities
+                        Description
 
-                            By offering a text-based environment for
-
-                            scripting and executing commands
-
-                            By optimizing file storage and retrieval processes
-
-                                
-                            
-                            Your reply should have this queston and correct option listed ONLY WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer. Make sure to solve the question.
+                        Trimming and Splitting
 
 
+                        PICK ONE CORRECT OPTION
 
-                            Fill Answer here :
+                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+
+
+                        - Question you need to answer:
+
+
+                        The students of XYZ school are struggling with academic stress. Their performance has dropped significantly in the recent times. They introduce mindfulness sessions. Which lateral thinking aspect does this solution highlight?
+
+                        Problem Solving
+
+                        Design
+
+                        Abstraction and Extraction
+
+                        Description
+
+
+                        PICK ONE CORRECT OPTION
+
+                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+
 
 
                         Sample Response Expected by you:
+                        
 
-                            Question:
-                            How does the Command Line Interface (CLI) contribute to the efficiency and automation of tasks in an Operating System?
+                        Question: A local library struggles with low visitation. They transform a section into a community co-working space...illustrate?
 
-                            Answer:
-                            <b> c) By offering a text-based environment for scripting and executing commands </b>
+                        Answer: B) Problem Solving
 
-                        Note: If a question is asked without any options, you should do as user asks
+                        Question: The students of XYZ school are struggling with academic stress. Their performance has dropped significantly in the recent times...highlight?
+
+                        Answer: A) Problem Solving
+
+                        
+                        NOTE: If a question is asked without any options, you should do as user asks
                         """
                                 }
                             ],
@@ -243,7 +284,7 @@ class CallAi:
                             "role": "model",
                             "parts": [
                                 {
-                                    "text": "Understood. I will also wrap the answer in <b> </b> tags. I will start answering now."
+                                    "text": "Understood. I will also wrap the answer in <b> </b> tags. Like <b> Answer: A) Problem Solving</b>. I will start answering now."
                                 }
                             ],
                         },
@@ -276,7 +317,7 @@ class CallAi:
                     If the image has a question then add do not forget to add it in the reply. Wrap the final answer in bold tags like this - <b>Final Answer:{final answer}</b>
                     
                     
-                    Sample output -
+                    Sample output of a problem-
                     
                     
                      Given the arrival time, burst time and priority of processes, apply Priority Scheduling and calculate the turnaround time. Assume that lower the value, higher the priority.
@@ -300,6 +341,8 @@ class CallAi:
                     P2: Turnaround Time = 11
                     P3: Turnaround Time = 6 
                     
+                    
+                    NOTE: The above problem is only a sample do not use it as a reference for the current problem. Do not answer the sample problem.
                     """,
                     image,
                 ]
