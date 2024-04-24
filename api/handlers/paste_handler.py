@@ -10,7 +10,7 @@ class Paste_handler:
         if status:
             print("Paste created")
         else:
-            print("Paste not created")
+            print("CAUTION: Modifiled Paste created")
 
     def clearPasteHandler():
         with open("temp/paste.txt", "w") as file:

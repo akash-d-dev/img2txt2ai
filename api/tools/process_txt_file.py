@@ -6,22 +6,46 @@ class TxtFile:
         else:
             text = text + "\n\n"
 
+        # Replace special characters
+        text = text.replace("≤", "<=")
+        text = text.replace("≥", ">=")
+
         with open(filename, "a+") as file:
             try:
                 file.write(text)
-                print("Text added to file: ", text)
+                print("Text added to file: ")
                 return True
             except:
+                print("****************************************************")
+                print("An error occurred while saving txt. Trying to fix...")
+                print("****************************************************")
+
+                try:
+                    lines = text.splitlines()
+                except:
+                    print("Error: Splitting lines failed.")
+                    return False
+
+                problematic_chars = []
+
+                for line in lines:
+                    words = line.split()
+                    for word in words:
+                        try:
+                            file.write(word + " ")
+                        except:
+                            problematic_chars.append(word)
+                            file.write(f"[replace with unicode] _u{ord(word[0])} ")
+
+                    file.write("\n")
+
+                print("Text added to file after fixing issues.")
                 print(
-                    """
-                    **********************************
-                    An error occurred while saving txt.
-                    Remove speical characters from text
-                    Or
-                    Try breaking the text in smaller parts
-                    **********************************
-                    """
+                    "Replaced words: ",
+                    problematic_chars,
                 )
+                print("Consider removing them for better results.")
+                print("\n")
                 return False
 
     def add_t_to_file_paste(text):

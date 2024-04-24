@@ -10,7 +10,7 @@ class Qna_handler:
         if status:
             print("QnA created")
         else:
-            print("QnA not created")
+            print("CAUTION: Modifiled QnA created")
 
     def clearQnaHandler():
         with open("temp/qna.txt", "w") as file:
