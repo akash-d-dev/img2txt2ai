@@ -7,8 +7,22 @@ class TxtFile:
             text = text + "\n\n"
 
         with open(filename, "a+") as file:
-            file.write(text)
-        return True
+            try:
+                file.write(text)
+                print("Text added to file: ", text)
+                return True
+            except:
+                print(
+                    """
+                    **********************************
+                    An error occurred while saving txt.
+                    Remove speical characters from text
+                    Or
+                    Try breaking the text in smaller parts
+                    **********************************
+                    """
+                )
+                return False
 
     def add_t_to_file_paste(text):
         return TxtFile.add_to_file("temp/paste.txt", text, gap2x=False)

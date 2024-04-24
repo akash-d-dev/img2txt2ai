@@ -6,8 +6,11 @@ class Paste_handler:
     def createPasteHandler():
         text = TxtScreenshot.getTxtFromClipboard()
         formatted_text = TxtScreenshot.formatTxt(text, makePrompt=False)
-        TxtFile.add_t_to_file_paste(formatted_text)
-        print("Paste created")
+        status = TxtFile.add_t_to_file_paste(formatted_text)
+        if status:
+            print("Paste created")
+        else:
+            print("Paste not created")
 
     def clearPasteHandler():
         with open("temp/paste.txt", "w") as file:
