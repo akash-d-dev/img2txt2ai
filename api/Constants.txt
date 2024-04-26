@@ -1,8 +1,10 @@
 class Constants:
     #############################################
-    # Typer Speed
+    # Typer
     #############################################
     TYPING_SPEED = 500
+    STOP_ON_MOUSE_IN_CORNER = True
+    STOP_ON_ESC = True
 
     #############################################
     # Code Language
@@ -10,21 +12,15 @@ class Constants:
     CODE_LANGUAGE = "JAVA"
 
     #############################################
-    # Emergency Stop
-    #############################################
-    STOP_ON_MOUSE_IN_CORNER = True
-    STOP_ON_ESC = True
-
-    #############################################
     # OpenAI
     #############################################
-    OPENAI_API_KEY = "" # Your OpenAI API key
+    OPENAI_API_KEY = ""
     OPENAI_MODEL = "gpt-3.5-turbo"
 
     #############################################
     # Gemini
     #############################################
-    GEMINI_API_KEY = "" # Your Gemini API key
+    GEMINI_API_KEY = ""
     GEMINI_MODEL = "gemini-pro"
     GEMINI_IMG_MODEL = "gemini-1.0-pro-vision-latest"
     # GEMINI_MODEL = "aqa"
