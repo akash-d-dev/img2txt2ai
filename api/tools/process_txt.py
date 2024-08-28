@@ -19,7 +19,7 @@ class TxtScreenshot:
             text += "\n\n"
             text += "PICK ONE CORRECT OPTION"
             text += "\n\n"
-            text += "Your reply should have this question(if question has more than 2 sentences or is long then use ... to make it short but mention the last word at the end) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer."
+            text += "Your reply should have this question and correct option listed ONLY along WITH SERIAL NUMBER, if you think the question is very long hen use ... . If options are missing then reply with the question and whatever you think is the correct answer."
         else:
             text += qna
         return text

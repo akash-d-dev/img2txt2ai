@@ -26,7 +26,7 @@ class CallAi:
                 messages.append(
                     {
                         "role": "system",
-                        "content": """You are a QUIZ SOLVER. Help solving a quiz. You will be provided with questions, options and some instructions by the user (Sapmle input is given below for referemce). Your job is to only pick the corerct option and reply in the same format shown as shown in sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER, MENTION ONLY THE CORRECT OPTION IN THE ANSWER AND QUESTION. DO NOT MENTION ALL OTHER WRONG OPTIONS.
+                        "content": f"""You are a QUIZ SOLVER. Help solving a quiz. You will be provided with questions, options and some instructions by the user (Sapmle input is given below for referemce). Your job is to only pick the corerct option and reply in the same format shown as shown in sample response. USE BOLD TAGS TO HIGHLIGHT THE CORRECT OPTION ONLY AS SHOWN. MAKE SURE TO MENTION THE OPTION NUMBER IN THE ANSWER, MENTION ONLY THE CORRECT OPTION IN THE ANSWER AND QUESTION. DO NOT MENTION ALL OTHER WRONG OPTIONS.
 
                         Sample User Input:
                         
@@ -48,7 +48,7 @@ class CallAi:
 
                         PICK ONE CORRECT OPTION
 
-                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+                       Your reply should have this question and correct option listed ONLY along WITH SERIAL NUMBER, if you think the question is very long hen use ... . If options are missing then reply with the question and whatever you think is the correct answer.
 
 
                         - Question you need to answer:
@@ -67,7 +67,7 @@ class CallAi:
 
                         PICK ONE CORRECT OPTION
 
-                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+                       Your reply should have this question and correct option listed ONLY along WITH SERIAL NUMBER, if you think the question is very long hen use ... . If options are missing then reply with the question and whatever you think is the correct answer.
 
 
 
@@ -85,7 +85,7 @@ class CallAi:
                         
                        
                         
-                        NOTE: As you can see in the sample response, only the correct option is mentioned in the answer and along with the question and the option is wrapped in bold tags. You should do the same. If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA TO REPLY and do not forget to wrap only the correct option in bold tags.
+                        NOTE: As you can see in the sample response, only the correct option is mentioned in the answer and along with the question and the option is wrapped in bold tags. You should do the same. If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE f{Constants.CODE_LANGUAGE} TO REPLY and do not forget to wrap only the correct option in bold tags.
                         """,
                     }
                 )
@@ -212,7 +212,7 @@ class CallAi:
 
                         PICK ONE CORRECT OPTION
 
-                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+                       Your reply should have this question and correct option listed ONLY along WITH SERIAL NUMBER, if you think the question is very long hen use ... . If options are missing then reply with the question and whatever you think is the correct answer.
 
 
                         - Question you need to answer:
@@ -231,7 +231,7 @@ class CallAi:
 
                         PICK ONE CORRECT OPTION
 
-                       Your reply should have this question(if question is long then use ... after one line) and correct option listed ONLY along WITH SERIAL NUMBER. If options are missing then reply with the question and whatever you think is the correct answer.
+                       Your reply should have this question and correct option listed ONLY along WITH SERIAL NUMBER, if you think the question is very long hen use ... . If options are missing then reply with the question and whatever you think is the correct answer.
 
 
 
@@ -260,7 +260,7 @@ class CallAi:
                             "role": "user",
                             "parts": [
                                 {
-                                    "text": """System prompt: You answer all the questions asked by the user in one reply only.For generating a reply of each question, Use the format shown in the sample response. If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE JAVA AS DEFAULT TO REPLY, until another language is specified."""
+                                    "text": f"""System prompt: You answer all the questions asked by the user in one reply only.For generating a reply of each question, Use the format shown in the sample response. If a question is asked without any options, you should do as user asks, IF QUESTION REQUIRES CODE THEN USE {Constants.CODE_LANGUAGE} AS DEFAULT TO REPLY, until another language is specified."""
                                 }
                             ],
                         },
@@ -268,7 +268,7 @@ class CallAi:
                             "role": "model",
                             "parts": [
                                 {
-                                    "text": "Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will generate the code replies in JAVA as default unitl another language is specified."
+                                    "text": f"Understood. I will answer all the in one reply only. If user asks one question, I will reply one answer. If user asks 5 questions, I will reply 5 answers. I will use the format shown in the sample response. If a question is asked without any options, I will do as user asks. I will generate the code replies in {Constants.CODE_LANGUAGE} as default unitl another language is specified."
                                 }
                             ],
                         },
