@@ -13,7 +13,7 @@ import CopyToClipBtn from "../utils/copyToClip";
 
 function Home() {
   // const url = "http://localhost:8888";
-  const url = "https://h13lsvst-8888.inc1.devtunnels.ms";
+  const url = "https://bjn18spw-8888.inc1.devtunnels.ms";
   // const url = process.env.REACT_APP_API_URL;
   const trigger = useScrollTrigger();
   const [active, setActive] = useState(0);
