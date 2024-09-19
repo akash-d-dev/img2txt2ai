@@ -161,6 +161,55 @@ class CallAi:
         else:
             return "-Empty File-", qna_content
 
+    def geminiCode():
+        qna_content = ReadFile.read_file_content("temp/paste.txt")
+        if qna_content:
+            try:
+                genai.configure(api_key=Constants.GEMINI_API_KEY)
+                model = genai.GenerativeModel(Constants.GEMINI_MODEL)
+                chat = model.start_chat(
+                    history=[
+                        {
+                            "role": "user",
+                            "parts": [
+                                {
+                                    "text": f"""System prompt: You are a coder. You help in solving coding problems. You will be provided with a coding problem and some instructions by the user. Your job is to only write the code and reply in the same format shown as shown in sample response. USE {Constants.CODE_LANGUAGE} AS DEFAULT TO REPLY, until another language is specified.
+                                    
+                                    
+                                    Here are some instructions for you:
+                                    1) Do not write comments
+                                    2) Always take input form user so that the code is dynamic
+                                    3) Use leetcode ready code, but still write the main function and take input from user
+                                    4) Keep the code readable and clean  
+                                    5) Reply only with the code, no explanation is needed
+                                    6) Do not do any additional formatting in your reply
+                                        """
+                                }
+                            ],
+                        },
+                        {
+                            "role": "model",
+                            "parts": [{"text": "Understood."}],
+                        },
+                        {
+                            "role": "user",
+                            "parts": [{"text": f"{qna_content}"}],
+                        },
+                        {
+                            "role": "model",
+                            "parts": [
+                                {"text": "Understood. I will start answering now."}
+                            ],
+                        },
+                    ]
+                )
+                reply = chat.send_message(qna_content)
+                return None, reply.text
+            except Exception as e:
+                return "-An error occured-", qna_content
+        else:
+            return "-Empty File-", qna_content
+
     def gemini():
         qna_content = ""
         with open("temp/qna.txt", "r") as file:

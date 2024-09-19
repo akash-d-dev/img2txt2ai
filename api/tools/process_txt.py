@@ -7,7 +7,7 @@ class TxtScreenshot:
 
     def pasteTxtToClipboard(text):
         pyperclip.copy(text)
-        print("Text copied to clipboard: ", text)
+        # print("Text copied to clipboard: ", text)
         return True
 
     def formatTxt(qna, makePrompt=True):

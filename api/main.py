@@ -2,7 +2,7 @@ from tools.process_txt import TxtScreenshot
 from handlers.qna_handler import Qna_handler
 from handlers.paste_handler import Paste_handler
 from handlers.openai_handler import Openai_handler
-from handlers.openai_code_handler import Openai_code_handler
+from handlers.generate_code_handler import Generate_code_handler
 from handlers.gemini_handler import Gemini_handler
 from handlers.gemini_img_handler import Gemini_img_handler
 from handlers.typer_handler import Typer_handler
@@ -67,13 +67,14 @@ def clearAnsOpenAI():
 
 
 ############################################################################
-# OpenAI Code
+# Generate Code
 ############################################################################
 
 
 # Create
-def createAnsOpenAICode():
-    keyboard.add_hotkey("alt+4", Openai_code_handler.createAnsHandlerOpenAICode)
+def GenerateCode():
+    keyboard.add_hotkey("alt+4", Generate_code_handler.GenerateCodeOpenAI)
+    keyboard.add_hotkey("alt+5", Generate_code_handler.GenerateCodeGemini)
 
 
 ############################################################################
@@ -153,8 +154,8 @@ try:
     createAnsOpenAI()  # alt+1
     clearAnsOpenAI()  # alt+8
 
-    # OpenAI Code
-    createAnsOpenAICode()  # alt+4
+    # Generate Code
+    GenerateCode()  # alt+4(OpenAI) and alt+5(Gemini)
 
     # Gemini
     createAnsGemini()  # alt+2

@@ -21,6 +21,6 @@ class Constants:
     # Gemini
     #############################################
     GEMINI_API_KEY = ""
-    GEMINI_MODEL = "gemini-pro"
+    GEMINI_MODEL = "gemini-1.5-pro"
     GEMINI_IMG_MODEL = "gemini-1.0-pro-vision-latest"
     # GEMINI_MODEL = "aqa"

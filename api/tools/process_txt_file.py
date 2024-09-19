@@ -57,8 +57,8 @@ class TxtFile:
     def add_a_to_file_openai(text):
         return TxtFile.add_to_file("temp/ans.txt", text)
 
-    def add_a_to_file_openai_code(text):
-        return TxtFile.add_to_file("temp/typer.txt", text)
+    # def add_a_to_file_openai_code(text):
+    #     return TxtFile.add_to_file("temp/typer.txt", text)
 
     def add_a_to_file_gemini(text):
         return TxtFile.add_to_file("temp/ans_gemini.txt", text)
