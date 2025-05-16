@@ -1,1 +1,1 @@
-It helps alot😅
+It helps a lot😅
